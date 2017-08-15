@@ -20,11 +20,11 @@ The following  functionality
 
 
 
-<img src='http://imgur.com/pm9rWgJ.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://imgur.com/pm9rWgJ.gif' title='Video Walkthrough' width='350' alt='Video Walkthrough' />
 
 
 
-<img src='http://imgur.com/2sVu2gn.png' title='Video Walkthrough' width='' alt='Video Walkthrough' />   <img src='http://imgur.com/VWiExa0.png' title='Video Walkthrough' width='300' alt='Video Walkthrough' /><img src='http://imgur.com/BIB6aWI.png' title='Video Walkthrough' width='' alt='Video Walkthrough' /><img src='http://imgur.com/HIR6CVE.png' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://imgur.com/2sVu2gn.png' title='Video Walkthrough' width='300' alt='Video Walkthrough' />   <img src='http://imgur.com/VWiExa0.png' title='Video Walkthrough' width='300' alt='Video Walkthrough' /><img src='http://imgur.com/BIB6aWI.png' title='Video Walkthrough' width='300' alt='Video Walkthrough' /><img src='http://imgur.com/HIR6CVE.png' title='Video Walkthrough' width='300' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
