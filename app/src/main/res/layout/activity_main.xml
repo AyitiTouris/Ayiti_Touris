@@ -23,7 +23,9 @@
         android:layout_height="350dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/bassin1" />
+        android:background="@drawable/bassin1"
+        android:scaleType="fitXY"
+        android:id="@+id/imageView" />
 
     <Button
         android:id="@+id/button2"
@@ -31,12 +33,13 @@
         android:layout_height="wrap_content"
         android:background="@android:color/holo_blue_dark"
         android:onClick="loginToRest"
-        android:text="Votre guide de voyage"
+        android:text="Welcome"
         android:textColor="@color/colorPrimaryDark"
-        android:textStyle="bold"
         android:textSize="20sp"
+        android:textStyle="bold"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
