@@ -5,41 +5,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6633B5E5"
+    android:background="@drawable/menubackground"
     tools:context="com.example.labadmin.ayiti_touris.MainActivity">
+   <RelativeLayout
+       android:layout_centerVertical="true"
+       android:padding="5dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/relativeLayout">
+       <LinearLayout
+           android:id="@+id/ln_ligne1"
+           android:padding="15dp"
+           android:layout_width="match_parent"
+           android:layout_centerHorizontal="true"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Ayiti Touris"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="50sp"
-        android:textStyle="italic"/>
+           <ImageView
+               android:id="@+id/ivresto"
+               android:layout_marginLeft="17dp"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/menu_resto"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="350dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@drawable/bassin1"
-        android:scaleType="fitXY"
-        android:id="@+id/imageView" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_blue_dark"
-        android:onClick="loginToRest"
-        android:text="Welcome"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+           <ImageView
+               android:id="@+id/ivhotel"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="25dp"
+               android:src="@drawable/hotel"/>
 
 
+           <ImageView
+               android:id="@+id/ivplage"
+               android:layout_marginLeft="25dp"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/menu_beach"/>
+       </LinearLayout>
+
+       <LinearLayout
+           android:id="@+id/ln_ligne2"
+           android:layout_below="@+id/ln_ligne1"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:padding="15dp"
+           android:orientation="horizontal">
+
+
+           <ImageView
+               android:id="@+id/ivevents"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="17dp"
+               android:src="@drawable/calendar" />
+
+
+           <ImageView
+               android:id="@+id/ivmonument"
+               android:layout_width="wrap_content"
+               android:layout_marginLeft="25dp"
+               android:layout_height="wrap_content"
+               android:src="@drawable/menu_monument"/>
+
+
+           <ImageView
+               android:id="@+id/ivmap"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="25dp"
+               android:src="@drawable/location"/>
+
+       </LinearLayout>
+ </RelativeLayout>
 </RelativeLayout>
