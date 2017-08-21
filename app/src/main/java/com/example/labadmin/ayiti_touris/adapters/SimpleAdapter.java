@@ -20,6 +20,7 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleView
     private final Context context;
     private List<Hotel> items;
 
+
     public static class SimpleViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
         // variable des elements

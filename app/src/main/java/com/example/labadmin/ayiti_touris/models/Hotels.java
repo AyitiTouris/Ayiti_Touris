@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public class Hotels {
 
-    public static final String[]hotelsNamesDummy = {
+    public static final String[] EvenementsPlan = {
             "paradis Hotel", "la providence", "le palace Hotel", "Ocorner Hotel", "bon zenzen Hotel",
             "Ste Philomene", "Alez Hotel", "Hotel Best", "Barbara Hotel ", "Amanda Hotel", "Anna Hotel",
             "Hotel Catherine", "Melissa Hotel", "Sandra Hotel", "Hotel Julia", "Hotel Paula", "Hotel Kimberly",
@@ -27,10 +27,10 @@ public class Hotels {
         List<Hotel> items = new ArrayList<>();
 
 
-        count = Math.min(count, hotelsNamesDummy.length);
+        count = Math.min(count, EvenementsPlan.length);
 
         while (items.size() < count) {
-            items.add(new Hotel(hotelsNamesDummy[random.nextInt(hotelsNamesDummy.length)]));
+            items.add(new Hotel(EvenementsPlan[random.nextInt(EvenementsPlan.length)]));
         }
 
         return new ArrayList<>(items);
