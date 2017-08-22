@@ -13,12 +13,14 @@ import com.bumptech.glide.Glide;
 import com.example.labadmin.ayiti_touris.DetailsActivity;
 import com.example.labadmin.ayiti_touris.models.Hotel;
 import com.example.labadmin.ayiti_touris.R;
+import com.example.labadmin.ayiti_touris.models.Monument;
 
 import java.util.List;
 
 public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleViewHolder> implements ItemClickListener {
     private final Context context;
     private List<Hotel> items;
+    private List<Monument> item;
 
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder
@@ -79,6 +81,7 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleView
 
 
 }
+
 
 
 interface ItemClickListener {

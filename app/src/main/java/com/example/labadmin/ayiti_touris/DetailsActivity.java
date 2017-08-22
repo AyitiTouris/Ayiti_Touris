@@ -16,6 +16,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.labadmin.ayiti_touris.models.Hotel;
+import com.example.labadmin.ayiti_touris.models.Monument;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -42,6 +43,15 @@ public class DetailsActivity extends AppCompatActivity {
         intent.putExtra(EXTRA_DRAWABLE, hotel.getIdDrawable());
         return intent;
     }
+
+    public static Intent getLaunchIntent(Context context, Monument monument) {
+        Intent intent = new Intent(context, DetailsActivity.class);
+        intent.putExtra(EXTRA_NAME, monument.getName());
+        intent.putExtra(EXTRA_DRAWABLE, monument.getIdDrawable());
+        return intent;
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
