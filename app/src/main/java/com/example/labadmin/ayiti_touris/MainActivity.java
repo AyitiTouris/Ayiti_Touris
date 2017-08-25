@@ -45,6 +45,30 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        ImageView btnPlage =(ImageView)findViewById(R.id.ivplages);
+        btnPlage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,ListesEndroit.class);
+                startActivity(intent);
+            }
+        });
+        ImageView btnEvenement =(ImageView)findViewById(R.id.ivevenements);
+        btnEvenement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,ListesEndroit.class);
+                startActivity(intent);
+            }
+        });
+        ImageView btnClub =(ImageView)findViewById(R.id.ivmaps);
+        btnClub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,ListesEndroit.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
