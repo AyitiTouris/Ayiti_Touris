@@ -6,15 +6,39 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
+/*import com.Backendless.Backendless;*/
+
+import static com.example.labadmin.ayiti_touris.Defaults.API_KEY;
+import static com.example.labadmin.ayiti_touris.Defaults.APPLICATION_ID;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        /*Backendless.initApp(this, APPLICATION_ID, API_KEY);*/
 
-        ImageView btnliste=(ImageView)findViewById(R.id.ivhotels);
+        ImageView btnliste =(ImageView)findViewById(R.id.ivhotels);
         btnliste.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,ListesEndroit.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageView btnMonument =(ImageView)findViewById(R.id.ivmonuments);
+        btnMonument.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,ListesEndroit.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageView btnRestaurant =(ImageView)findViewById(R.id.ivrestorants);
+        btnRestaurant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this,ListesEndroit.class);

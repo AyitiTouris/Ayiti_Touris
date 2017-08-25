@@ -10,17 +10,12 @@ import java.util.Random;
 
 public class Monuments {
     public static final String[] MonumentsHistoric = {
-            "neg maron", "trois mains", "citadelle", "jean-jacques dessalines", "bon zenzen Hotel",
-            "Ste Philomene", "Alez Hotel", "Hotel Best", "Barbara Hotel ", "Amanda Hotel", "Anna Hotel",
-            "Hotel Catherine", "Melissa Hotel", "Sandra Hotel", "Hotel Julia", "Hotel Paula", "Hotel Kimberly",
-            "Diane Hotel", "Betty Hotel", "Sharon Hotel", "Ruby Hotel", "Barbara", "Ann Hotel", "Phyllis Hotel",
-            "Linda Hotel", "Marie the best", "Deborah Hotel", "Sara Hotel", "Gloria Hotel", "Karen Hotel", "Patricia Hotel",
-
+            "maron inconnu", "trois mains", "citadelle", "jean-jacques dessalines","le train à parc historique de la canne-à-sucre "
     };
 
 
     /**
-     Liste aleatoire hotel
+     Liste aleatoire monument
      */
     public static List<Monument> randomList(int count) {
         Random random = new Random();

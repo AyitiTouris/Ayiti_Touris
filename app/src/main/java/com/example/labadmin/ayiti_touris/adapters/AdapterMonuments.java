@@ -10,16 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.labadmin.ayiti_touris.DetailsActivity;
-import com.example.labadmin.ayiti_touris.models.Hotel;
 import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.models.Monument;
+import com.example.labadmin.ayiti_touris.DetailsMonumentActivity;
 
 import java.util.List;
 
-public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleViewHolder> implements ItemClickListener {
+public class AdapterMonuments extends RecyclerView.Adapter<AdapterMonuments.SimpleViewHolder> implements ItemClickMonuments {
     private final Context context;
-    private List<Hotel> items;
+    private List<Monument> items;
 
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder
@@ -27,9 +26,9 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleView
         // variable des elements
         public TextView nombre;
         public ImageView avatar;
-        public ItemClickListener listener;
+        public ItemClickMonuments listener;
 
-        public SimpleViewHolder(View v, ItemClickListener listener) {
+        public SimpleViewHolder(View v, ItemClickMonuments listener) {
             super(v);
 
             nombre = v.findViewById(R.id.list_item_textview);
@@ -44,7 +43,7 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleView
         }
     }
 
-    public SimpleAdapter(Context context, List<Hotel> items) {
+    public AdapterMonuments(Context context, List<Monument> items) {
         this.context = context;
         this.items = items;
     }
@@ -63,7 +62,7 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleView
 
     @Override
     public void onBindViewHolder(SimpleViewHolder viewHolder, int i) {
-        Hotel currentItem = items.get(i);
+        Monument currentItem = items.get(i);
         viewHolder.nombre.setText(currentItem.getName());
         Glide.with(viewHolder.avatar.getContext())
                 .load(currentItem.getIdDrawable())
@@ -74,7 +73,7 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleView
 
     @Override
     public void onItemClick(View view, int position) {
-        DetailsActivity.createInstance(
+        DetailsMonumentActivity.createInstance(
                 (Activity) context, items.get(position));
     }
 
@@ -82,7 +81,6 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleView
 }
 
 
-
-interface ItemClickListener {
+interface ItemClickMonuments {
     void onItemClick(View view, int position);
 }

@@ -18,13 +18,13 @@ import com.bumptech.glide.Glide;
 import com.example.labadmin.ayiti_touris.models.Hotel;
 import com.example.labadmin.ayiti_touris.models.Monument;
 
-public class DetailsActivity extends AppCompatActivity {
+public class DetailsMonumentActivity extends AppCompatActivity {
 
     private static final String EXTRA_NAME = "com.herprogramacion.toolbarapp.name";
     private static final String EXTRA_DRAWABLE = "com.herprogramacion.toolbarapp.drawable";
 
 
-    public static void createInstance(Activity activity, Hotel title) {
+    public static void createInstance(Activity activity, Monument title) {
         Intent intent = getLaunchIntent(activity, title);
         activity.startActivity(intent);
     }
@@ -34,16 +34,22 @@ public class DetailsActivity extends AppCompatActivity {
      * details.
      *
      * @param context Contexto donde se inicia
-     * @param hotel    Identificador de la chica
+     * @param monument    Identificador de la chica
      * @return Intent user list
      */
-    public static Intent getLaunchIntent(Context context, Hotel hotel) {
-        Intent intent = new Intent(context, DetailsActivity.class);
+   /* public static Intent getLaunchIntent(Context context, Hotel hotel) {
+        Intent intent = new Intent(context, DetailsMonumentActivity.class);
         intent.putExtra(EXTRA_NAME, hotel.getName());
         intent.putExtra(EXTRA_DRAWABLE, hotel.getIdDrawable());
         return intent;
-    }
+    }*/
 
+    public static Intent getLaunchIntent(Context context, Monument monument) {
+        Intent intent = new Intent(context, DetailsMonumentActivity.class);
+        intent.putExtra(EXTRA_NAME, monument.getName());
+        intent.putExtra(EXTRA_DRAWABLE, monument.getIdDrawable());
+        return intent;
+    }
 
 
 

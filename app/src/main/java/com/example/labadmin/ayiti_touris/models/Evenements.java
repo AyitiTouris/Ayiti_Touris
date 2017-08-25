@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Liste Hotels
+ * Events List
  */
 public class Evenements {
 
@@ -20,15 +20,15 @@ public class Evenements {
     /**
      Liste aleatoire evenements
      */
-    public static List<Hotel> randomList(int count) {
+    public static List<Evenement> randomList(int count) {
         Random random = new Random();
-        List<Hotel> items = new ArrayList<>();
+        List<Evenement> items = new ArrayList<>();
 
 
-        count = Math.min(count, Hotels.EvenementsPlan.length);
+        count = Math.min(count, EvenementsPlan.length);
 
         while (items.size() < count) {
-            items.add(new Hotel(Hotels.EvenementsPlan[random.nextInt(Hotels.EvenementsPlan.length)]));
+            items.add(new Evenement(EvenementsPlan[random.nextInt(EvenementsPlan.length)]));
         }
 
         return new ArrayList<>(items);

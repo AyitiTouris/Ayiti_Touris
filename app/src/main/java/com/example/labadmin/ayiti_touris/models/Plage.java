@@ -5,20 +5,19 @@ import com.example.labadmin.ayiti_touris.R;
 import java.util.Random;
 
 /**
- * Created by AHTT - V P-FEMININ on 8/21/2017.
+ * Created by AHTT - V P-FEMININ on 8/23/2017.
  */
 
-public class
-Monument {
+public class Plage {
     private String name;
     private int idDrawable;
 
-    public Monument(String name, int idDrawable) {
+    public Plage(String name, int idDrawable) {
         this.name = name;
         this.idDrawable = idDrawable;
     }
 
-    public Monument(String name) {
+    public Plage(String name) {
         this.name = name;
         this.idDrawable = getRandomGirlDrawable();
     }
@@ -39,17 +38,16 @@ Monument {
         switch (rnd.nextInt(6)) {
             default:
             case 0:
-                return R.drawable.monu1;
+                return R.drawable.beach2;
             case 1:
-                return R.drawable.monu2;
+                return R.drawable.beach3;
             case 2:
-                return R.drawable.monu3;
+                return R.drawable.beach4;
             case 3:
-                return R.drawable.monu4;
+                return R.drawable.beach5;
             case 4:
-                return R.drawable.monu5;
+                return R.drawable.beach6;
 
         }
     }
 }
-
