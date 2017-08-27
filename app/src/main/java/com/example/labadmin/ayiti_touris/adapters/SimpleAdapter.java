@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.example.labadmin.ayiti_touris.DetailsActivity;
 import com.example.labadmin.ayiti_touris.models.Hotel;
 import com.example.labadmin.ayiti_touris.R;
+import com.example.labadmin.ayiti_touris.models.Monument;
 
 import java.util.List;
 
@@ -79,6 +80,7 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleView
 
 
 }
+
 
 
 interface ItemClickListener {

@@ -2,9 +2,8 @@ package com.example.labadmin.ayiti_touris.models;
 
 import java.util.Random;
 import com.example.labadmin.ayiti_touris.R;
-/**
- * POJO de hotel
- */
+
+
 public class Hotel {
 
     private String name;

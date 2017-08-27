@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/menubackground"
+    android:background="@drawable/back"
     tools:context="com.example.labadmin.ayiti_touris.MainActivity">
    <RelativeLayout
        android:layout_centerVertical="true"
@@ -66,13 +66,13 @@
                android:layout_width="wrap_content"
                android:layout_marginLeft="25dp"
                android:layout_height="wrap_content"
-               android:src="@drawable/menu_monument"/>
+               android:src="@drawable/menu_monu"/>
 
 
            <ImageView
                android:id="@+id/ivmaps"
                android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
+               android:layout_height="86dp"
                android:layout_marginLeft="25dp"
                android:src="@drawable/location"/>
 

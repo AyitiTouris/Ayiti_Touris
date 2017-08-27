@@ -16,6 +16,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.labadmin.ayiti_touris.models.Hotel;
+import com.example.labadmin.ayiti_touris.models.Monument;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -29,12 +30,12 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     /**
-     * Construye un Intent a partir del contexto y la actividad
-     * de detalle.
+     * build an Intent for the context and the activities
+     * details.
      *
      * @param context Contexto donde se inicia
      * @param hotel    Identificador de la chica
-     * @return Intent listo para usar
+     * @return Intent user list
      */
     public static Intent getLaunchIntent(Context context, Hotel hotel) {
         Intent intent = new Intent(context, DetailsActivity.class);
@@ -43,13 +44,16 @@ public class DetailsActivity extends AppCompatActivity {
         return intent;
     }
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        setToolbar();// Añadir action bar
-        if (getSupportActionBar() != null) // Habilitar up button
+        setToolbar();// Add action bar
+        if (getSupportActionBar() != null) // button option
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent i = getIntent();
@@ -58,9 +62,9 @@ public class DetailsActivity extends AppCompatActivity {
 
         CollapsingToolbarLayout collapser =
                 (CollapsingToolbarLayout) findViewById(R.id.collapser);
-        collapser.setTitle(name); // Cambiar título
+        collapser.setTitle(name); // Change title
 
-        loadImageParallax(idDrawable);// Cargar Imagen
+        loadImageParallax(idDrawable);// Change image
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -68,14 +72,14 @@ public class DetailsActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showSnackBar("Opción de Chatear");
+                        showSnackBar("Just add to favorites");
                     }
                 }
         );
     }
 
     private void setToolbar() {
-        // Añadir la Toolbar
+        // Add Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
@@ -83,7 +87,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void loadImageParallax(int id) {
         ImageView image = (ImageView) findViewById(R.id.image_paralax);
-        // utilisation de glide
+        // using the glide
         Glide.with(this)
                 .load(id)
                 .centerCrop()
