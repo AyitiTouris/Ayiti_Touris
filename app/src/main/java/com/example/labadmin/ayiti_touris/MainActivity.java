@@ -6,10 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-/*import com.Backendless.Backendless;*/
+import com.example.labadmin.ayiti_touris.utils.ListEvent;
 
-import static com.example.labadmin.ayiti_touris.Defaults.API_KEY;
-import static com.example.labadmin.ayiti_touris.Defaults.APPLICATION_ID;
+/*import com.Backendless.Backendless;*/
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         btnEvenement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,ListesEndroit.class);
+                Intent intent=new Intent(MainActivity.this,ListEvent.class);
                 startActivity(intent);
             }
         });
