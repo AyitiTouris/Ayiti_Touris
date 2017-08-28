@@ -1,4 +1,4 @@
-package com.example.labadmin.ayiti_touris;
+package com.example.labadmin.ayiti_touris.utils;
 
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -9,11 +9,16 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import  com.example.labadmin.ayiti_touris.adapters.SimpleAdapter;
-import com.example.labadmin.ayiti_touris.models.Hotels;
 
+import com.example.labadmin.ayiti_touris.R;
+import com.example.labadmin.ayiti_touris.adapters.AdapterRestaurants;
+import com.example.labadmin.ayiti_touris.models.Restaurants;
 
-public class ListesEndroit extends AppCompatActivity {
+/**
+ * Created by labadmin on 8/28/17.
+ */
+
+public class ListesResto extends AppCompatActivity {
 
     private RecyclerView recycler;
     private LinearLayoutManager lManager;
@@ -22,11 +27,11 @@ public class ListesEndroit extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listes_endroit);
+        setContentView(R.layout.activity_listes_resto);
 
         setToolbar();// Toolbar
 
-        SimpleAdapter adaptador = new SimpleAdapter(this, Hotels.randomList(30));
+        AdapterRestaurants adaptador = new AdapterRestaurants(this, Restaurants.randomList(30));
 
         // Obtener el Recycler
         recycler = (RecyclerView) findViewById(R.id.reciclador);
@@ -81,3 +86,4 @@ public class ListesEndroit extends AppCompatActivity {
     }
 
 }
+

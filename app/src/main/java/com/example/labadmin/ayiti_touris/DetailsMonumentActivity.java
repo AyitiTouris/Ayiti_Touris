@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.example.labadmin.ayiti_touris.models.Hotel;
 import com.example.labadmin.ayiti_touris.models.Monument;
 
 public class DetailsMonumentActivity extends AppCompatActivity {
@@ -56,7 +55,7 @@ public class DetailsMonumentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+        setContentView(R.layout.activity_details_monument);
 
         setToolbar();// Add action bar
         if (getSupportActionBar() != null) // button option

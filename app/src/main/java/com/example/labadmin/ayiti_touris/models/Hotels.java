@@ -10,11 +10,12 @@ import java.util.Random;
 public class Hotels {
 
     public static final String[] HotelsName = {
-            "paradis Hotel", "la providence", "le palace Hotel", "Ocorner Hotel", "bon zenzen Hotel",
-            "Ste Philomene", "Alez Hotel", "Hotel Best", "Barbara Hotel ", "Amanda Hotel", "Anna Hotel",
-            "Hotel Catherine", "Melissa Hotel", "Sandra Hotel", "Hotel Julia", "Hotel Paula", "Hotel Kimberly",
-            "Diane Hotel", "Betty Hotel", "Sharon Hotel", "Ruby Hotel", "Barbara", "Ann Hotel", "Phyllis Hotel",
-            "Linda Hotel", "Marie the best", "Deborah Hotel", "Sara Hotel", "Gloria Hotel", "Karen Hotel", "Patricia Hotel",
+            "Best Western Premier", "Royal Oasis Hotel", "Marriott Hotel", "Hotel NH Haiti El Rancho", "Karibe Hotel",
+            "Kinam Hotel", "La Reserve Hotel", "Hotel Visa Lodge", "Hotel Oloffson", "Le Plaza Hotel", "Hotel Prince",
+            "Hotel Villa Therese", "Seven Stars Hotel", "Servotel", "Habitation Hatt Hotel", "Corail Suites", "La Maison Hotel",
+            "Pacot Breeze Hotel", "La Lorraine", "Ideal Villa Hotel", "Universal Hotel", "Pavillon des Receptions & Hotel", "La Pepiniere Hotel", "Palm Residence Port-au-Prince",
+            "Ranch Le Montcel", "Palm Inn Hotel", "Le Monte Cristo Hotel and Suites", "Elite Hotel Haiti", "Kayanm Hotel", "Hotel Luxe Confort", "Hotel Montana ","Le Jardin Hotel","Le Perroquet",
+            "Renaissance Hotel","Kingdom Hotel",
 
     };
 

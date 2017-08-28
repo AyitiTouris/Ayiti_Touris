@@ -12,7 +12,7 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 import com.example.labadmin.ayiti_touris.R;
 
-public class ListEvent extends AppCompatActivity {
+public class ListesEvent extends AppCompatActivity {
 
 
     String currentUrl;
@@ -21,7 +21,7 @@ public class ListEvent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_event);
+        setContentView(R.layout.activity_listes_event);
 
         setToolbar();
         if (getSupportActionBar() != null) // button option
