@@ -117,7 +117,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="256dp"
+        android:layout_height="230dp"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -137,7 +137,7 @@
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/pager"
                 android:layout_width="match_parent"
-                android:layout_height="300dp">
+                android:layout_height="240dp">
             </android.support.v4.view.ViewPager>
 
 
@@ -184,17 +184,17 @@
 
 
     <!-- FAB -->
-   <!-- <android.support.design.widget.FloatingActionButton
+    <!--<android.support.design.widget.FloatingActionButton
         android:id="@+id/location"
         android:layout_width="56dp"
         android:layout_height="56dp"
-
+        android:layout_margin="250dp"
         android:layout_marginTop="200dp"
         android:src="@mipmap/ic_like"
         app:backgroundTint="@color/colorAccent1"
         app:borderWidth="0dp"
         app:elevation="4dp"
-        />-->
+        app:layout_anchor="@+id/app_bar" />-->
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/location"
@@ -204,6 +204,7 @@
         android:src="@mipmap/ic_map"
         android:tint="#FFFFFF"
         app:rippleColor="#e14c88"
+        app:backgroundTint="#e14c88"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="16dp"
         android:layout_alignParentBottom="true"
