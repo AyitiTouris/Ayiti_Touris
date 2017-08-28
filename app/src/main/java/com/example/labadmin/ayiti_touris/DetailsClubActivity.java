@@ -7,22 +7,40 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.labadmin.ayiti_touris.models.Club;
-import com.example.labadmin.ayiti_touris.models.Hotel;
 
 public class DetailsClubActivity extends AppCompatActivity {
 
     private static final String EXTRA_NAME = "com.herprogramacion.toolbarapp.name";
     private static final String EXTRA_DRAWABLE = "com.herprogramacion.toolbarapp.drawable";
 
+
+    private static final String LOG_TXT = "DetailsClubActivity";
+
+    ViewPager mViewPager;
+
+    CustomPagerAdapter mCustomPagerAdapter;
+    int[] mResources = {
+            R.drawable.club_one,
+            R.drawable.club_two,
+            R.drawable.club_three,
+            R.drawable.club_four,
+            R.drawable.club_five
+    };
 
     public static void createInstance(Activity activity, Club title) {
         Intent intent = getLaunchIntent(activity, title);
@@ -50,7 +68,7 @@ public class DetailsClubActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+        setContentView(R.layout.activity_details_club);
 
         setToolbar();// Add action bar
         if (getSupportActionBar() != null) // button option
@@ -66,8 +84,19 @@ public class DetailsClubActivity extends AppCompatActivity {
 
         loadImageParallax(idDrawable);// Change image
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton locat = (FloatingActionButton) findViewById(R.id.location);
+
+        locat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                callMap();
+
+                Log.i(LOG_TXT, "Onclick Call");
+            }
+        });
+
         fab.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -76,6 +105,11 @@ public class DetailsClubActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        mCustomPagerAdapter = new CustomPagerAdapter(this);
+
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager.setAdapter(mCustomPagerAdapter);
     }
 
     private void setToolbar() {
@@ -123,6 +157,53 @@ public class DetailsClubActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    void callMap()
+    {
+        Intent i = new Intent(DetailsClubActivity.this, MapsActivity.class);
+        startActivity(i);
+
+    }
+
+
+    class CustomPagerAdapter extends PagerAdapter {
+
+        Context mContext;
+        LayoutInflater mLayoutInflater;
+
+        public CustomPagerAdapter(Context context) {
+            mContext = context;
+            mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        @Override
+        public int getCount() {
+            return mResources.length;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == ((LinearLayout) object);
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            View itemView = mLayoutInflater.inflate(R.layout.pager_item, container, false);
+
+            ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
+            imageView.setImageResource(mResources[position]);
+
+            container.addView(itemView);
+
+            return itemView;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((LinearLayout) object);
+        }
+
 
 
     }

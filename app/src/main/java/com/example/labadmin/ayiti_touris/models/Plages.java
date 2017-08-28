@@ -10,7 +10,8 @@ import java.util.Random;
 
 public class Plages {
     public static final String[] LocalBeach = {
-            "maron inconnu", "trois mains", "citadelle", "jean-jacques dessalines","le train à parc historique de la canne-à-sucre "
+            "Moulin Sur Mer", "Le Xaragua", "Musee Ogier-Fombrun", "Royal Decameron Indigo Beach Resort & Spa","Wahoo Bay Beach Hotel",
+            "Kaliko Beach Club All-Inclusive Resort","Ouanga Bay","Jeffel Hotel",
     };
 
 

@@ -38,7 +38,9 @@ public class DetailsActivity extends AppCompatActivity {
             R.drawable.oasis_one,
             R.drawable.oasis_two,
             R.drawable.oasis_three,
-            R.drawable.oasis_four
+            R.drawable.oasis_four,
+            R.drawable.oasis_five,
+
     };
 
 

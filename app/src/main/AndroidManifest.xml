@@ -37,15 +37,66 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".ListesEndroit" />
+        <activity android:name=".utils.ListesHotel" />
+        <activity android:name=".utils.ListesResto" />
+        <activity android:name=".utils.ListesMonument" />
+        <activity android:name=".utils.ListesClub" />
+        <activity android:name=".utils.ListesPlage" />
+        <activity android:name=".utils.ListesEvent" />
         <activity
             android:name=".DetailsActivity"
-            android:parentActivityName=".ListesEndroit"
+            android:parentActivityName=".utils.ListesHotel"
             android:theme="@style/AppTheme.TranslucentSystemBars">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.labadmin.ayiti_touris.ListesEndroit" />
+                android:value="com.example.labadmin.ayiti_touris.utils.ListesHotel" />
         </activity>
+
+        <activity
+            android:name=".DetailsRestaurantActivity"
+            android:parentActivityName=".utils.ListesResto"
+            android:theme="@style/AppTheme.TranslucentSystemBars">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.labadmin.ayiti_touris.utils.ListesHotel" />
+        </activity>
+
+        <activity
+            android:name=".DetailsMonumentActivity"
+            android:parentActivityName=".utils.ListesMonument"
+            android:theme="@style/AppTheme.TranslucentSystemBars">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.labadmin.ayiti_touris.utils.ListesHotel" />
+        </activity>
+
+        <activity
+            android:name=".DetailsClubActivity"
+            android:parentActivityName=".utils.ListesClub"
+            android:theme="@style/AppTheme.TranslucentSystemBars">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.labadmin.ayiti_touris.utils.ListesHotel" />
+        </activity>
+
+        <activity
+            android:name=".DetailsPlageActivity"
+            android:parentActivityName=".utils.ListesPlage"
+            android:theme="@style/AppTheme.TranslucentSystemBars">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.labadmin.ayiti_touris.utils.ListesHotel" />
+        </activity>
+
+        <activity
+            android:name=".DetailsEvenementActivity"
+            android:parentActivityName=".utils.ListesEvent"
+            android:theme="@style/AppTheme.TranslucentSystemBars">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.labadmin.ayiti_touris.utils.ListesHotel" />
+        </activity>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -61,10 +112,8 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity
-            android:name=".utils.ListEvent"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".utils.DebugActivity"></activity>
+        <activity android:name=".utils.SlideImage" />
+
     </application>
 
 </manifest>

@@ -10,10 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.labadmin.ayiti_touris.DetailsMonumentActivity;
 import com.example.labadmin.ayiti_touris.DetailsRestaurantActivity;
 import com.example.labadmin.ayiti_touris.R;
-import com.example.labadmin.ayiti_touris.models.Monument;
 import com.example.labadmin.ayiti_touris.models.Restaurant;
 
 import java.util.List;
@@ -58,7 +56,7 @@ public class AdapterRestaurants extends RecyclerView.Adapter<AdapterRestaurants.
     @Override
     public SimpleViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.items_endroit, viewGroup, false);
+                .inflate(R.layout.items_resto, viewGroup, false);
         return new SimpleViewHolder(v, this);
     }
 
