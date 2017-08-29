@@ -14,7 +14,7 @@ import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.adapters.AdapterPlages;
 import com.example.labadmin.ayiti_touris.models.Plages;
 
-public class ListesPlage extends AppCompatActivity {
+public class  ListesPlage extends AppCompatActivity {
 
     private RecyclerView recycler;
     private LinearLayoutManager lManager;

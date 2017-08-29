@@ -13,18 +13,32 @@
         app:statusBarBackground="@color/darkPrimaryColor">
 
         <!--Recyclerview -->
+        app:statusBarBackground="@color/colorPrimary1">
+
+        <!--Recyclerview -->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/reciclador"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/coordinator"
+            android:padding="3dp"
+            android:scrollbars="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <!-- App Bar -->
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
             >
+            android:layout_height="wrap_content">
 
             <!-- Toolbar -->
             <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+
                 android:background="@color/accentColor"
                 app:layout_scrollFlags="scroll|enterAlways"
                 >
@@ -35,6 +49,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center">
+
+                android:background="?attr/colorAccent"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -62,3 +84,15 @@
 
     </android.support.design.widget.CoordinatorLayout>
 </RelativeLayout>
+
+                        android:textSize="30dp" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+
+    </android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>
+
