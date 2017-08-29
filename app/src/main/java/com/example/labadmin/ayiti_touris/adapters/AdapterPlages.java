@@ -10,15 +10,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.labadmin.ayiti_touris.DetailsPlageActivity;
 import com.example.labadmin.ayiti_touris.DetailsRestaurantActivity;
 import com.example.labadmin.ayiti_touris.R;
-import com.example.labadmin.ayiti_touris.models.Restaurant;
+import com.example.labadmin.ayiti_touris.models.Plage;
+
 
 import java.util.List;
 
 public class AdapterPlages extends RecyclerView.Adapter<AdapterPlages.SimpleViewHolder> implements ItemClickPlages {
     private final Context context;
-    private List<Restaurant> items;
+    private List<Plage> items;
 
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder
@@ -43,7 +45,7 @@ public class AdapterPlages extends RecyclerView.Adapter<AdapterPlages.SimpleView
         }
     }
 
-    public AdapterPlages(Context context, List<Restaurant> items) {
+    public AdapterPlages(Context context, List<Plage> items) {
         this.context = context;
         this.items = items;
     }
@@ -62,7 +64,7 @@ public class AdapterPlages extends RecyclerView.Adapter<AdapterPlages.SimpleView
 
     @Override
     public void onBindViewHolder(SimpleViewHolder viewHolder, int i) {
-        Restaurant currentItem = items.get(i);
+        Plage currentItem = items.get(i);
         viewHolder.nombre.setText(currentItem.getName());
         Glide.with(viewHolder.avatar.getContext())
                 .load(currentItem.getIdDrawable())
@@ -73,7 +75,7 @@ public class AdapterPlages extends RecyclerView.Adapter<AdapterPlages.SimpleView
 
     @Override
     public void onItemClick(View view, int position) {
-        DetailsRestaurantActivity.createInstance(
+        DetailsPlageActivity.createInstance(
                 (Activity) context, items.get(position));
     }
 

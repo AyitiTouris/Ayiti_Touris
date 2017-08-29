@@ -5,7 +5,7 @@ import com.example.labadmin.ayiti_touris.R;
 import java.util.Random;
 
 /**
- * Created by AHTT - V P-FEMININ on 8/24/2017.
+ * Created by AHTT - V P-FEMININ on 8/23/2017.
  */
 
 public class Restaurant {
@@ -31,22 +31,22 @@ public class Restaurant {
     }
 
     /**
-     Asign images
+     Asigner des images Aleatoire
      */
     private int getRandomGirlDrawable() {
         Random rnd = new Random();
         switch (rnd.nextInt(6)) {
             default:
             case 0:
-                return R.drawable.resto1;
-            case 1:
                 return R.drawable.resto2;
-            case 2:
-                return R.drawable.resto6;
-            case 3:
-                return R.drawable.resto7;
-            case 4:
+            case 1:
                 return R.drawable.resto8;
+            case 2:
+                return R.drawable.resto7;
+            case 3:
+                return R.drawable.resto6;
+            case 4:
+                return R.drawable.resto2;
 
         }
     }

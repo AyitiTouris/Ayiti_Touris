@@ -38,15 +38,15 @@ public class Club {
         switch (rnd.nextInt(6)) {
             default:
             case 0:
-                return R.drawable.hot1;
+                return R.drawable.club1;
             case 1:
-                return R.drawable.hot5;
+                return R.drawable.club2;
             case 2:
-                return R.drawable.hot3;
+                return R.drawable.club3;
             case 3:
-                return R.drawable.hot4;
+                return R.drawable.club4;
             case 4:
-                return R.drawable.hot6;
+                return R.drawable.club5;
 
         }
     }
