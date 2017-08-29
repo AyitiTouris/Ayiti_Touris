@@ -12,8 +12,6 @@ import android.view.MenuItem;
 
 import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.adapters.AdapterPlages;
-import com.example.labadmin.ayiti_touris.adapters.SimpleAdapter;
-import com.example.labadmin.ayiti_touris.models.Hotels;
 import com.example.labadmin.ayiti_touris.models.Plages;
 
 public class  ListesPlage extends AppCompatActivity {
@@ -62,7 +60,7 @@ public class  ListesPlage extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.action_search:
-                showSnackBar("Rechercher votre hotel...");
+                showSnackBar("Rechercher votre plage...");
                 return true;
             case R.id.action_settings:
                 showSnackBar("Votre preference");
