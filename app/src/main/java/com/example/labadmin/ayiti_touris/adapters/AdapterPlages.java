@@ -12,12 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.labadmin.ayiti_touris.DetailsPlageActivity;
 import com.example.labadmin.ayiti_touris.R;
-import com.example.labadmin.ayiti_touris.models.Plage
-import com.example.labadmin.ayiti_touris.DetailsRestaurantActivity;
-import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.models.Plage;
-
-
 
 import java.util.List;
 
