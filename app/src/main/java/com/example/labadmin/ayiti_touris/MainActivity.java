@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        ImageView btnClub =(ImageView)findViewById(R.id.ivmaps);
+        ImageView btnClub =(ImageView)findViewById(R.id.ivclubs);
         btnClub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

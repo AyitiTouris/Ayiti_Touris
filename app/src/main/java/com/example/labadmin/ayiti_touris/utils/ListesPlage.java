@@ -1,9 +1,11 @@
 package com.example.labadmin.ayiti_touris.utils;
 
+
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +14,7 @@ import android.view.MenuItem;
 
 import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.adapters.AdapterPlages;
+
 import com.example.labadmin.ayiti_touris.models.Plages;
 
 public class  ListesPlage extends AppCompatActivity {
@@ -20,11 +23,11 @@ public class  ListesPlage extends AppCompatActivity {
     private LinearLayoutManager lManager;
     private CollapsingToolbarLayout collapser;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listes_plage);
-
 
         setToolbar();// Toolbar
 
@@ -48,6 +51,7 @@ public class  ListesPlage extends AppCompatActivity {
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
     }
 
     @Override
