@@ -15,7 +15,7 @@ public class Clubs {
     };
 
     /**
-     Liste aleatoire evenements
+     List clubs
      */
     public static List<Club> randomList(int count) {
         Random random = new Random();

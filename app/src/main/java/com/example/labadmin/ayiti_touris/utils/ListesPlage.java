@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.example.labadmin.ayiti_touris.R;
 
-public class ListesPlage extends AppCompatActivity {
+public class  ListesPlage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
