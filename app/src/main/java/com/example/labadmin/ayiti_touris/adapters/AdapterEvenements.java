@@ -10,15 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.labadmin.ayiti_touris.DetailsRestaurantActivity;
+import com.example.labadmin.ayiti_touris.DetailsEvenementActivity;
 import com.example.labadmin.ayiti_touris.R;
-import com.example.labadmin.ayiti_touris.models.Restaurant;
+import com.example.labadmin.ayiti_touris.models.Evenement;
 
 import java.util.List;
 
 public class AdapterEvenements extends RecyclerView.Adapter<AdapterEvenements.SimpleViewHolder> implements ItemClickEvenements {
     private final Context context;
-    private List<Restaurant> items;
+    private List<Evenement> items;
 
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder
@@ -43,7 +43,7 @@ public class AdapterEvenements extends RecyclerView.Adapter<AdapterEvenements.Si
         }
     }
 
-    public AdapterEvenements(Context context, List<Restaurant> items) {
+    public AdapterEvenements(Context context, List<Evenement> items) {
         this.context = context;
         this.items = items;
     }
@@ -62,7 +62,7 @@ public class AdapterEvenements extends RecyclerView.Adapter<AdapterEvenements.Si
 
     @Override
     public void onBindViewHolder(SimpleViewHolder viewHolder, int i) {
-        Restaurant currentItem = items.get(i);
+        Evenement currentItem = items.get(i);
         viewHolder.nombre.setText(currentItem.getName());
         Glide.with(viewHolder.avatar.getContext())
                 .load(currentItem.getIdDrawable())
@@ -73,7 +73,7 @@ public class AdapterEvenements extends RecyclerView.Adapter<AdapterEvenements.Si
 
     @Override
     public void onItemClick(View view, int position) {
-        DetailsRestaurantActivity.createInstance(
+        DetailsEvenementActivity.createInstance(
                 (Activity) context, items.get(position));
     }
 
