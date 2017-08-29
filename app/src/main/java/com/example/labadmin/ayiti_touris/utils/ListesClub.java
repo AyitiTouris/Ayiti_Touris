@@ -12,9 +12,7 @@ import android.view.MenuItem;
 
 import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.adapters.AdapterClubs;
-import com.example.labadmin.ayiti_touris.adapters.AdapterRestaurants;
 import com.example.labadmin.ayiti_touris.models.Clubs;
-import com.example.labadmin.ayiti_touris.models.Restaurants;
 
 public class ListesClub extends AppCompatActivity {
     private RecyclerView recycler;
@@ -31,7 +29,7 @@ public class ListesClub extends AppCompatActivity {
 
         AdapterClubs adaptador = new AdapterClubs(this, Clubs.randomList(30));
 
-        // Obtener el Recycler
+        // Obtain the Recycler
         recycler = (RecyclerView) findViewById(R.id.reciclador);
         recycler.setHasFixedSize(true);
 
@@ -39,7 +37,7 @@ public class ListesClub extends AppCompatActivity {
         lManager = new LinearLayoutManager(this);
         recycler.setLayoutManager(lManager);
 
-        // Creer un nouveau adapteur
+        // Create a new adapter
 
         recycler.setAdapter(adaptador);
 
@@ -73,9 +71,9 @@ public class ListesClub extends AppCompatActivity {
     }
 
     /**
-     * Proyecta una {@link Snackbar} con el string usado
+     * show {@link Snackbar} with a  string
      *
-     * @param msg Mensaje
+     * @param msg Message
      */
     private void showSnackBar(String msg) {
         Snackbar
