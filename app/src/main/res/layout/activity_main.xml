@@ -57,24 +57,24 @@
                android:id="@+id/ivevenements"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:layout_marginLeft="17dp"
+               android:layout_marginLeft="25dp"
                android:src="@drawable/calendar" />
 
 
            <ImageView
                android:id="@+id/ivmonuments"
                android:layout_width="wrap_content"
-               android:layout_marginLeft="25dp"
                android:layout_height="wrap_content"
+               android:layout_marginLeft="25dp"
                android:src="@drawable/menu_monu"/>
 
 
            <ImageView
                android:id="@+id/ivmaps"
                android:layout_width="wrap_content"
-               android:layout_height="86dp"
+               android:layout_height="wrap_content"
                android:layout_marginLeft="25dp"
-               android:src="@drawable/location"/>
+               android:src="@drawable/club128" />
 
        </LinearLayout>
  </RelativeLayout>

@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.labadmin.ayiti_touris.utils.ListesClub;
 import com.example.labadmin.ayiti_touris.utils.ListesEvent;
 import com.example.labadmin.ayiti_touris.utils.ListesHotel;
+import com.example.labadmin.ayiti_touris.utils.ListesMonument;
+import com.example.labadmin.ayiti_touris.utils.ListesPlage;
 import com.example.labadmin.ayiti_touris.utils.ListesResto;
 
 /*import com.Backendless.Backendless;*/
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         btnMonument.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,ListesHotel.class);
+                Intent intent=new Intent(MainActivity.this,ListesMonument.class);
                 startActivity(intent);
             }
         });
@@ -50,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         btnPlage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,ListesHotel.class);
+                Intent intent=new Intent(MainActivity.this,ListesPlage.class);
                 startActivity(intent);
             }
         });
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         btnClub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,ListesHotel.class);
+                Intent intent=new Intent(MainActivity.this,ListesClub.class);
                 startActivity(intent);
             }
         });
