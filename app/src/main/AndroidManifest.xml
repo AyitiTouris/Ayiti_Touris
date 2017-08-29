@@ -64,7 +64,7 @@
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.labadmin.ayiti_touris.utils.ListesHotel" />
+                android:value="com.example.labadmin.ayiti_touris.utils.ListesResto" />
         </activity>
 
         <activity
@@ -73,7 +73,7 @@
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.labadmin.ayiti_touris.utils.ListesHotel" />
+                android:value="com.example.labadmin.ayiti_touris.utils.ListesMonument" />
         </activity>
 
         <activity
@@ -82,7 +82,7 @@
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.labadmin.ayiti_touris.utils.ListesHotel" />
+                android:value="com.example.labadmin.ayiti_touris.utils.ListesClub" />
         </activity>
 
         <activity
@@ -91,7 +91,7 @@
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.labadmin.ayiti_touris.utils.ListesHotel" />
+                android:value="com.example.labadmin.ayiti_touris.utils.ListesPlage" />
         </activity>
 
         <activity
@@ -100,7 +100,7 @@
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.labadmin.ayiti_touris.utils.ListesHotel" />
+                android:value="com.example.labadmin.ayiti_touris.utils.ListesEvent" />
         </activity>
 
         <!--

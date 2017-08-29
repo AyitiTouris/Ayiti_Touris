@@ -16,6 +16,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.labadmin.ayiti_touris.models.Plage;
+import com.example.labadmin.ayiti_touris.models.Plages;
 
 public class DetailsPlageActivity extends AppCompatActivity {
 

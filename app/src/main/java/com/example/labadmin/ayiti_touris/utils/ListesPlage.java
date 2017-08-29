@@ -1,9 +1,11 @@
 package com.example.labadmin.ayiti_touris.utils;
 
+
+import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,8 +14,7 @@ import android.view.MenuItem;
 
 import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.adapters.AdapterPlages;
-import com.example.labadmin.ayiti_touris.adapters.SimpleAdapter;
-import com.example.labadmin.ayiti_touris.models.Hotels;
+
 import com.example.labadmin.ayiti_touris.models.Plages;
 
 public class  ListesPlage extends AppCompatActivity {
@@ -27,6 +28,7 @@ public class  ListesPlage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listes_plage);
+
         setToolbar();// Toolbar
 
         AdapterPlages adaptador = new AdapterPlages(this, Plages.randomList(30));
@@ -49,6 +51,7 @@ public class  ListesPlage extends AppCompatActivity {
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
     }
 
     @Override
@@ -62,7 +65,7 @@ public class  ListesPlage extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.action_search:
-                showSnackBar("Rechercher votre hotel...");
+                showSnackBar("Rechercher votre plage...");
                 return true;
             case R.id.action_settings:
                 showSnackBar("Votre preference");
@@ -83,6 +86,7 @@ public class  ListesPlage extends AppCompatActivity {
                 .show();
     }
 
-
 }
+
+
 
