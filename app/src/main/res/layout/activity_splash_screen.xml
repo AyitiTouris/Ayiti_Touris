@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome"
-        android:textColor="@color/colorPrimaryDark1"
+        android:textColor="@color/primaryColor"
         android:textSize="50sp"
         android:textStyle="italic"
         android:layout_alignParentTop="true"

@@ -33,8 +33,11 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorAccent"
-            app:layout_scrollFlags="scroll|enterAlways">
+            android:background="@color/accentColor"
+            app:layout_scrollFlags="scroll|enterAlways"
+            >
+
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -45,11 +48,14 @@
                     android:layout_height="wrap_content"
                     android:text="Evenements"
                     android:textColor="#FFFFFF"
-                    android:textSize="30dp" />
+                    android:textSize="30dp"
+                    android:layout_centerVertical="true"/>
 
             </RelativeLayout>
-        </android.support.v7.widget.Toolbar>
 
-    </android.support.design.widget.AppBarLayout>
+        </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
+
     </android.support.design.widget.CoordinatorLayout>
 </RelativeLayout>

@@ -11,10 +11,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.labadmin.ayiti_touris.DetailsPlageActivity;
-import com.example.labadmin.ayiti_touris.DetailsRestaurantActivity;
 import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.models.Plage;
-
 
 import java.util.List;
 
@@ -58,7 +56,7 @@ public class AdapterPlages extends RecyclerView.Adapter<AdapterPlages.SimpleView
     @Override
     public SimpleViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.items_endroit, viewGroup, false);
+                .inflate(R.layout.items_plage, viewGroup, false);
         return new SimpleViewHolder(v, this);
     }
 
