@@ -22,8 +22,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
-import com.example.labadmin.ayiti_touris.models.Evenement;
-import com.example.labadmin.ayiti_touris.models.Plage;
 import com.example.labadmin.ayiti_touris.models.Restaurant;
 
 public class DetailsRestaurantActivity extends AppCompatActivity {

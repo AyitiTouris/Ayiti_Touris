@@ -28,7 +28,7 @@ public class ListesHotel extends AppCompatActivity {
 
         setToolbar();// Toolbar
 
-        SimpleAdapter adaptador = new SimpleAdapter(this, Hotels.randomList(30));
+        SimpleAdapter adaptador = new SimpleAdapter(this, Hotels.randomList(40));
 
         // Obtener el Recycler
         recycler = (RecyclerView) findViewById(R.id.reciclador);

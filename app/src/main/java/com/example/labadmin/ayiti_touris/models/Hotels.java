@@ -15,7 +15,7 @@ public class Hotels {
             "Hotel Villa Therese", "Seven Stars Hotel", "Servotel", "Habitation Hatt Hotel", "Corail Suites", "La Maison Hotel",
             "Pacot Breeze Hotel", "La Lorraine", "Ideal Villa Hotel", "Universal Hotel", "Pavillon des Receptions & Hotel", "La Pepiniere Hotel", "Palm Residence Port-au-Prince",
             "Ranch Le Montcel", "Palm Inn Hotel", "Le Monte Cristo Hotel and Suites", "Elite Hotel Haiti", "Kayanm Hotel", "Hotel Luxe Confort", "Hotel Montana ","Le Jardin Hotel","Le Perroquet",
-            "Renaissance Hotel","Kingdom Hotel",
+            "Renaissance Hotel","Kingdom Hotel", "Hotel Montana"
 
     };
 
