@@ -31,7 +31,7 @@ public class ListesResto extends AppCompatActivity {
 
         setToolbar();// Toolbar
 
-        AdapterRestaurants adaptador = new AdapterRestaurants(this, Restaurants.randomList(30));
+        AdapterRestaurants adaptador = new AdapterRestaurants(this, Restaurants.randomList(20));
 
         // Obtener el Recycler
         recycler = (RecyclerView) findViewById(R.id.reciclador);
