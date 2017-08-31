@@ -27,7 +27,7 @@ public class ListesMonument extends AppCompatActivity {
 
         setToolbar();// Toolbar
 
-        AdapterMonuments adaptador = new AdapterMonuments(this, Monuments.randomList(30));
+        AdapterMonuments adaptador = new AdapterMonuments(this, Monuments.randomList(10));
 
         // Obtener el Recycler
         recycler = (RecyclerView) findViewById(R.id.reciclador);

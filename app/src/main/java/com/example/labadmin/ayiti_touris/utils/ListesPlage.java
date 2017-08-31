@@ -30,7 +30,7 @@ public class  ListesPlage extends AppCompatActivity {
 
         setToolbar();// Toolbar
 
-        AdapterPlages adaptador = new AdapterPlages(this, Plages.randomList(30));
+        AdapterPlages adaptador = new AdapterPlages(this, Plages.randomList(15));
 
         // Obtener el Recycler
         recycler = (RecyclerView) findViewById(R.id.reciclador);

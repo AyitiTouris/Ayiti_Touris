@@ -27,7 +27,7 @@ public class ListesClub extends AppCompatActivity {
 
         setToolbar();// Toolbar
 
-        AdapterClubs adaptador = new AdapterClubs(this, Clubs.randomList(30));
+        AdapterClubs adaptador = new AdapterClubs(this, Clubs.randomList(15));
 
         // Obtain the Recycler
         recycler = (RecyclerView) findViewById(R.id.reciclador);
