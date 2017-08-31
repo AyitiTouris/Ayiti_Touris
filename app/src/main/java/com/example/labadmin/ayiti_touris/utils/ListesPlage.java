@@ -14,7 +14,6 @@ import android.view.MenuItem;
 
 import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.adapters.AdapterPlages;
-
 import com.example.labadmin.ayiti_touris.models.Plages;
 
 public class  ListesPlage extends AppCompatActivity {

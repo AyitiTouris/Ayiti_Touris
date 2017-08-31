@@ -8,16 +8,6 @@
     tools:context="com.example.labadmin.ayiti_touris.MainActivity">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark1"
-        android:textSize="50sp"
-        android:textStyle="italic"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
