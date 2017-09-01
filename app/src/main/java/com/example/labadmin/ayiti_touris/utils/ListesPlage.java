@@ -30,7 +30,7 @@ public class  ListesPlage extends AppCompatActivity {
 
         setToolbar();// Toolbar
 
-        AdapterPlages adaptador = new AdapterPlages(this, Plages.randomList(15));
+        AdapterPlages adaptador = new AdapterPlages(this, Plages.randomList(7));
 
         // Obtener el Recycler
         recycler = (RecyclerView) findViewById(R.id.reciclador);
@@ -50,6 +50,8 @@ public class  ListesPlage extends AppCompatActivity {
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 
@@ -62,12 +64,19 @@ public class  ListesPlage extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        finish();
         switch (id) {
             case R.id.action_search:
                 showSnackBar("Rechercher votre plage...");
                 return true;
             case R.id.action_settings:
                 showSnackBar("Votre preference");
+                return true;
+            case R.id.action_account:
+                showSnackBar("Votre Profile");
+                return true;
+            case R.id.action_about:
+                showSnackBar("A Propos de Nous");
                 return true;
         }
 

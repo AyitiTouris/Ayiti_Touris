@@ -27,7 +27,7 @@ public class ListesClub extends AppCompatActivity {
 
         setToolbar();// Toolbar
 
-        AdapterClubs adaptador = new AdapterClubs(this, Clubs.randomList(15));
+        AdapterClubs adaptador = new AdapterClubs(this, Clubs.randomList(10));
 
         // Obtain the Recycler
         recycler = (RecyclerView) findViewById(R.id.reciclador);
@@ -47,6 +47,8 @@ public class ListesClub extends AppCompatActivity {
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -58,12 +60,19 @@ public class ListesClub extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        finish();
         switch (id) {
             case R.id.action_search:
                 showSnackBar("Rechercher votre hotel...");
                 return true;
             case R.id.action_settings:
                 showSnackBar("Votre preference");
+                return true;
+            case R.id.action_account:
+                showSnackBar("Votre Profile");
+                return true;
+            case R.id.action_about:
+                showSnackBar("A Propos de Nous");
                 return true;
         }
 

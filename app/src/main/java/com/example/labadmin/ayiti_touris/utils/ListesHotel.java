@@ -28,7 +28,7 @@ public class ListesHotel extends AppCompatActivity {
 
         setToolbar();// Toolbar
 
-        SimpleAdapter adaptador = new SimpleAdapter(this, Hotels.randomList(30));
+        SimpleAdapter adaptador = new SimpleAdapter(this, Hotels.randomList(35));
 
         // Obtener el Recycler
         recycler = (RecyclerView) findViewById(R.id.reciclador);
@@ -48,6 +48,8 @@ public class ListesHotel extends AppCompatActivity {
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -59,6 +61,7 @@ public class ListesHotel extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        finish();
         switch (id) {
             case R.id.action_search:
                 showSnackBar("Rechercher votre hotel...");
@@ -66,6 +69,13 @@ public class ListesHotel extends AppCompatActivity {
             case R.id.action_settings:
                 showSnackBar("Votre preference");
                 return true;
+            case R.id.action_account:
+                showSnackBar("Votre Profile");
+                return true;
+            case R.id.action_about:
+                showSnackBar("A Propos de Nous");
+                return true;
+
         }
 
         return super.onOptionsItemSelected(item);
