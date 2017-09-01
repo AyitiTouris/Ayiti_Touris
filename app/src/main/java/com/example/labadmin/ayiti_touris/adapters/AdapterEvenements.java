@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.labadmin.ayiti_touris.DetailsEvenementActivity;
+import com.example.labadmin.ayiti_touris.activities.DetailsEvenementActivity;
 import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.models.Evenement;
 

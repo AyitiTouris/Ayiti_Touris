@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.models.Monument;
-import com.example.labadmin.ayiti_touris.DetailsMonumentActivity;
+import com.example.labadmin.ayiti_touris.activities.DetailsMonumentActivity;
 
 import java.util.List;
 

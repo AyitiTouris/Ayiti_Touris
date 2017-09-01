@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class Clubs {
 
-    public static final String[] NightClubs = {"Djoumbala Night Club", "Jet Set", "Barak", "International Night CLub", "Asu Lounge", "Shakers", "The View", "Esquina Latina", "Distinction Night Club", ""
+    public static final String[] NightClubs = {"Djoumbala Night Club", "Jet Set", "Barak", "International Night CLub", "Asu Lounge", "Shakers", "The View", "Esquina Latina", "Distinction Night Club", "Cafe du Commerce"
 
     };
 
