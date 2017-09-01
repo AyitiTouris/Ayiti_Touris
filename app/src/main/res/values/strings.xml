@@ -14,7 +14,7 @@
         Morbi posuere lorem nec elit dapibus, vitae accumsan mauris pellentesque.
         Vestibulum a lobortis mi. Vestibulum lacinia molestie semper. Pellentesque
         ultrices arcu lacus, interdum mollis nibh convallis ut. Aliquam sagittis
-        sem a lacus gravida, eu accumsan purus volutpat. Donec tempus, est id
+        sem a lacus gravida, eu accumsan purus volutpat. Donec tempus, est idk
         tristique consectetur, lacus ligula dignissim turpis, cursus commodo turpis
         libero in purus. Phasellus tempus gravida tempor.
     </string>
@@ -22,4 +22,4 @@
     <string name="action_search">Chercher</string>
     <string name="title_activity_maps">Map</string>
     <string name="dot_d_une_connexion_wi_fi_gratuite_d_un_restaurant_et_d_un_casino_o_vous_pourrez_vous_divertir_le_paradis_hotel_propose_des_h_bergements_acceptant_les_animaux_domestiques_situ_s_port_au_prince_un_parking_priv_gratuit_sur_place_est_votre_disposition_les_chambres_climatis_es_disposent_d_une_t_l_vision_cran_plat_et_d_une_salle_de_bains_privative_quip_e_d_une_baignoire_ou_d_une_douche_l_tablissement_assure_un_service_de_navette_gratuit_vous_pourrez_jouer_au_billard_sur_place_l_a_roport_international_de_port_au_prince_le_plus_proche_est_distant_de_6_km_nous_parlons_votre_langue_l_tablissement_paradis_hotel_accueille_des_clients_booking_com_depuis_le_31_mars_2015">Doté d\'une connexion Wi-Fi gratuite, d\'un restaurant et d\'un casino où vous pourrez vous divertir, le Paradis Hotel propose des hébergements acceptant les animaux domestiques situés à Port-au-Prince. Un parking privé gratuit sur place est à votre disposition. Les chambres climatisées disposent d\'une télévision à écran plat et d\'une salle de bains privative équipée d\'une baignoire ou d\'une douche. L\'établissement assure un service de navette gratuit. Vous pourrez jouer au billard sur place. L\'aéroport international de Port-au-Prince, le plus proche, est distant de 6 km. Nous parlons votre langue ! L\'établissement Paradis Hotel accueille des clients Booking.com depuis le 31 mars 2015.</string>
-</resources>
+  </resources>

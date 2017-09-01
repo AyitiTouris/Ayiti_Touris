@@ -39,15 +39,15 @@ Monument {
         switch (rnd.nextInt(6)) {
             default:
             case 0:
-                return R.drawable.monu1;
+                return R.drawable.monument1;
             case 1:
-                return R.drawable.monu2;
+                return R.drawable.monument2;
             case 2:
-                return R.drawable.monu3;
+                return R.drawable.monument3;
             case 3:
-                return R.drawable.monu4;
+                return R.drawable.monument4;
             case 4:
-                return R.drawable.monu5;
+                return R.drawable.monument5;
 
         }
     }

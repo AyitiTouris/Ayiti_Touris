@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class Monuments {
     public static final String[] MonumentsHistoric = {
-            "maron inconnu", "trois mains", "citadelle", "jean-jacques dessalines","le train à parc historique de la canne-à-sucre "
+            "jean-jacques dessalines", "negre marron", "les heros de la bataille de vertiere", "citadelle la ferriere", "palais sans-soucis", "Capois la Mort", "Palais du Roi Henry Christophe"        
     };
 
 
