@@ -40,8 +40,10 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         tools:ignore="HardcodedText" />
                     <!--donnee dela description-->
+
                     <TextView
                         android:layout_width="match_parent"
+
                         android:layout_height="wrap_content"
                         android:text="@string/dot_d_une_connexion_wi_fi_gratuite_d_un_restaurant_et_d_un_casino_o_vous_pourrez_vous_divertir_le_paradis_hotel_propose_des_h_bergements_acceptant_les_animaux_domestiques_situ_s_port_au_prince_un_parking_priv_gratuit_sur_place_est_votre_disposition_les_chambres_climatis_es_disposent_d_une_t_l_vision_cran_plat_et_d_une_salle_de_bains_privative_quip_e_d_une_baignoire_ou_d_une_douche_l_tablissement_assure_un_service_de_navette_gratuit_vous_pourrez_jouer_au_billard_sur_place_l_a_roport_international_de_port_au_prince_le_plus_proche_est_distant_de_6_km_nous_parlons_votre_langue_l_tablissement_paradis_hotel_accueille_des_clients_booking_com_depuis_le_31_mars_2015" />
 
