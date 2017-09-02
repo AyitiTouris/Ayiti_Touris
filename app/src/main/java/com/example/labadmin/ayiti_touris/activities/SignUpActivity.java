@@ -1,6 +1,5 @@
 package com.example.labadmin.ayiti_touris.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -14,8 +13,8 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
     @Override
@@ -29,7 +28,8 @@ public class SignUpActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void onLogButton(View v) {
-        Intent i = new Intent(SignUpActivity.this, CreateAccountActivity.class);
-        startActivity(i);
+       
     }
+
+
 }

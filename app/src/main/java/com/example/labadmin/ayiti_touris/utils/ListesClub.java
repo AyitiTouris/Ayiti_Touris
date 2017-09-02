@@ -1,9 +1,10 @@
 package com.example.labadmin.ayiti_touris.utils;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.labadmin.ayiti_touris.R;
+import com.example.labadmin.ayiti_touris.activities.SignInActivity;
 import com.example.labadmin.ayiti_touris.adapters.AdapterClubs;
 import com.example.labadmin.ayiti_touris.models.Clubs;
 
@@ -69,7 +71,9 @@ public class ListesClub extends AppCompatActivity {
                 showSnackBar("Votre preference");
                 return true;
             case R.id.action_account:
-                showSnackBar("Votre Profile");
+                //showSnackBar("Votre Profile");
+                Intent intent=new Intent(this,SignInActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.action_about:
                 showSnackBar("A Propos de Nous");
