@@ -26,8 +26,8 @@ class CreateAccountActivity extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
         //Display the up button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         // Spinner element
         spinner = (Spinner) findViewById(R.id.spiSexe);

@@ -11,9 +11,7 @@
         android:layout_height="wrap_content"
         android:scaleType="fitCenter"
         android:orientation="vertical"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:padding="15dp">
 
         <!--   <android.support.v7.widget.Toolbar
                android:id="@+id/toolbar"
@@ -38,6 +36,7 @@
             android:src="@mipmap/ic_launcherlogo"
             tools:ignore="ContentDescription" />
 
+
         <EditText
             android:id="@+id/etIdentif"
             android:layout_width="match_parent"
@@ -45,7 +44,7 @@
             android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/ic_user"
             android:ems="10"
-            android:gravity="left"
+            android:gravity="center"
             android:hint="Identifiant ou E-mail"
             android:inputType="textPersonName"
             android:paddingBottom="5dp"
@@ -54,6 +53,9 @@
             android:textColorHint="@android:color/darker_gray"
             android:textSize="18sp"
             tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded" />
+
+
+
 
 
         <EditText
@@ -71,6 +73,8 @@
             android:textColorHint="@android:color/darker_gray"
             android:textSize="18sp"
             tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded" />
+
+
 
         <Button
             android:id="@+id/btnSignIn1"
@@ -117,7 +121,6 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="36dp"
         android:backgroundTint="@color/colorPrimaryDark"
-        android:onClick="onLogButton"
         android:text="Enregistrer"
         android:textColor="@android:color/background_light"
         android:textColorHighlight="@android:color/darker_gray"
