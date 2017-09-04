@@ -11,6 +11,9 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -37,18 +40,24 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".utils.ListesHotel"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".utils.ListesResto"
+        <activity
+            android:name=".utils.ListesHotel"
             android:theme="@style/AppTheme" />
-        <activity android:name=".utils.ListesMonument"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".utils.ListesClub"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".utils.ListesPlage"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".utils.ListesEvent"
-            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".utils.ListesResto"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".utils.ListesMonument"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".utils.ListesClub"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".utils.ListesPlage"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".utils.ListesEvent"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".DetailsActivity"
             android:parentActivityName=".utils.ListesHotel"
@@ -57,7 +66,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.labadmin.ayiti_touris.utils.ListesHotel" />
         </activity>
-
         <activity
             android:name=".DetailsRestaurantActivity"
             android:parentActivityName=".utils.ListesResto"
@@ -66,7 +74,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.labadmin.ayiti_touris.utils.ListesResto" />
         </activity>
-
         <activity
             android:name=".DetailsMonumentActivity"
             android:parentActivityName=".utils.ListesMonument"
@@ -75,7 +82,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.labadmin.ayiti_touris.utils.ListesMonument" />
         </activity>
-
         <activity
             android:name=".DetailsClubActivity"
             android:parentActivityName=".utils.ListesClub"
@@ -84,7 +90,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.labadmin.ayiti_touris.utils.ListesClub" />
         </activity>
-
         <activity
             android:name=".DetailsPlageActivity"
             android:parentActivityName=".utils.ListesPlage"
@@ -93,7 +98,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.labadmin.ayiti_touris.utils.ListesPlage" />
         </activity>
-
         <activity
             android:name=".DetailsEvenementActivity"
             android:parentActivityName=".utils.ListesEvent"
@@ -119,7 +123,8 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".utils.SlideImage" />
-
+        <activity android:name=".ActivitiesOnline.Activity_ListeEndroit" />
+        <activity android:name=".ActivitiesOnline.Activity_DetailsEndroit"></activity>
     </application>
 
 </manifest>

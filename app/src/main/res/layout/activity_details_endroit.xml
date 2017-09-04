@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <!-- Objeto con Scroll -->
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/app_bar"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="24dp">
+
+            <!-- Card Info -->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
+
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="Info"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+
+                    <TextView
+                        android:id="@+id/tvnomEndroit"
+                        android:drawableLeft="@drawable/ic_assignement"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:drawablePadding="5dp"
+
+                        android:gravity="center_vertical"
+                        android:text="nom" />
+
+                    <TextView
+                        android:id="@+id/tvadresseEndroit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:drawableLeft="@drawable/ic_localisation"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="5dp"
+                        android:text="Adresse" />
+
+
+                    <TextView
+                        android:id="@+id/tvtelephoneEndroit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        android:drawableLeft="@drawable/ic_call"
+                        android:layout_marginTop="5dp"
+                        android:text="telephone" />
+
+
+                    <TextView
+                        android:id="@+id/tvemailEndroit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="5dp"
+                        android:drawableLeft="@drawable/ic_email"
+                        android:text="email" />
+
+                    <TextView
+                        android:id="@+id/tvsitewebEndroit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="5dp"
+                        android:drawableLeft="@drawable/ic_siteweb"
+                        android:text="siteweb" />
+
+                    <RatingBar
+                        android:id="@+id/rating_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center_horizontal"
+                        android:isIndicator="true"
+                        android:layout_marginTop="5dp"
+                        android:progressDrawable="@drawable/my_rating"
+                        />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <!-- Description -->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp">
+
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <!--titre cardre -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Description"
+                        android:layout_marginBottom="15dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                    <!--donnee dela description-->
+                    <TextView
+                        android:id="@+id/tvdescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:text="Description" />
+
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <!-- App Bar -->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <!-- Collapser -->
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <!-- Imagen del detalle -->
+            <ImageView
+                android:id="@+id/ivimage1_paralax"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax" />
+
+            <!-- Toolbar -->
+            <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/CustomActionBar"
+
+                />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <!-- Floting favorite -->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabFavorite"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:src="@mipmap/ic_favorite"
+        app:backgroundTint="@color/colorAccent1"
+        app:borderWidth="0dp"
+        app:elevation="4dp"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|right|end" />
+
+<!-- floting map-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:src="@mipmap/ic_map"
+        android:tint="#FFFFFF"
+        app:rippleColor="#4c8de1"
+        app:backgroundTint="#4c4ee1"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp" />
+
+
+</android.support.design.widget.CoordinatorLayout>
+
+
+
+

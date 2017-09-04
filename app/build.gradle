@@ -33,6 +33,8 @@ dependencies {
 
 
 
+    compile group: 'com.backendless', name: 'backendless', version: '4.0.0-beta3'
+    compile 'com.makeramen:roundedimageview:2.2.0'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:26.+'
@@ -49,5 +51,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-location:9.4.0'
     compile 'com.google.code.gson:gson:2.6.1'
     compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile 'com.miguelcatalan:materialsearchview:1.4.0'
     testCompile 'junit:junit:4.12'
 }
