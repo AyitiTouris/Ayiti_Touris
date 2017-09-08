@@ -53,4 +53,5 @@ dependencies {
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.miguelcatalan:materialsearchview:1.4.0'
     testCompile 'junit:junit:4.12'
+    compile 'com.airbnb.android:lottie:2.2.0'
 }
