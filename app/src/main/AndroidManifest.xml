@@ -128,7 +128,11 @@
         <activity android:name=".activities.SignUpActivity" />
         <activity android:name=".ActivitiesOnline.RegistrationActivity" />
         <activity android:name=".ActivitiesOnline.LoginActivity" />
-        <activity android:name=".ActivitiesOnline.Activity_ListeFavorite"></activity>
+        <activity android:name=".ActivitiesOnline.Activity_ListeFavorite" />
+        <activity android:name=".ActivitiesOnline.Activity_ListeClub" />
+        <activity android:name=".ActivitiesOnline.Activity_ListeResto" />
+        <activity android:name=".ActivitiesOnline.Activity_ListePlage" />
+        <activity android:name=".ActivitiesOnline.Activity_ListeMonument"></activity>
     </application>
 
 </manifest>

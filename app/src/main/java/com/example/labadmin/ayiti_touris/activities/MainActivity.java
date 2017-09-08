@@ -7,8 +7,12 @@ import android.view.View;
 import android.widget.ImageView;
 
 
+import com.example.labadmin.ayiti_touris.ActivitiesOnline.Activity_ListeClub;
 import com.example.labadmin.ayiti_touris.ActivitiesOnline.Activity_ListeHotel;
 
+import com.example.labadmin.ayiti_touris.ActivitiesOnline.Activity_ListeMonument;
+import com.example.labadmin.ayiti_touris.ActivitiesOnline.Activity_ListePlage;
+import com.example.labadmin.ayiti_touris.ActivitiesOnline.Activity_ListeResto;
 import com.example.labadmin.ayiti_touris.R;
 
 import com.example.labadmin.ayiti_touris.utils.ListesClub;
@@ -34,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this,Activity_ListeHotel.class);
-                intent.putExtra("Hotel",Hotel);
                 startActivity(intent);
             }
         });
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         btnMonument.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,ListesMonument.class);
+                Intent intent=new Intent(MainActivity.this,Activity_ListeMonument.class);
                 startActivity(intent);
             }
         });
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         btnRestaurant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,ListesResto.class);
+                Intent intent=new Intent(MainActivity.this,Activity_ListeResto.class);
                 startActivity(intent);
             }
         });
@@ -60,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         btnPlage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,ListesPlage.class);
+                Intent intent=new Intent(MainActivity.this,Activity_ListePlage.class);
                 startActivity(intent);
             }
         });
@@ -74,35 +77,10 @@ public class MainActivity extends AppCompatActivity {
         });
         ImageView btnClub =(ImageView)findViewById(R.id.ivclubs);
 
-         /*   btnClub.setOnClickListener(new View.OnClickListener() {
-                @Override
-
-                public void onClick(View view) {
-                    Intent intent = new Intent(MainActivity.this, ListesClub.class);
-                    intent.putExtra("Club", Club);
-                    startActivity(intent);
-                }
-            });*/
-
-
-
-
-
-         /*   btnClub.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                   // Intent intent=new Intent(MainActivity.this,ListesClub.class);
-                    Intent intent = new Intent(MainActivity.this, Activity_ListeHotel.class);
-                    intent.putExtra("Club", Club);
-                    startActivity(intent);
-                }
-            });*/
-       // }
-
         btnClub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,ListesClub.class);
+                Intent intent=new Intent(MainActivity.this,Activity_ListeClub.class);
                 startActivity(intent);
                // Intent intent=new Intent(MainActivity.this,LoginActivity.class);
                // startActivity(intent);

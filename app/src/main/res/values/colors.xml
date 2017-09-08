@@ -5,9 +5,12 @@
     <color name="colorAccent1">#f02d74</color>
 
 
-    <color name="darkPrimaryColor">#d32f2f</color>
+    <color name="darkPrimaryColor">#3B5998</color>
     <color name="primaryColor">#303f9f</color>
     <color name="accentColor">#448AFF</color>
+    <color name="primary_text">#ffffff</color>
+
+
 
     <color name="colorPrimary">#cc55c7</color>
     <color name="colorPrimaryDark">#B21AAC</color>
@@ -35,6 +38,7 @@
     <color name="login_primary_darker">#00695C</color> <!-- 800 -->
     <color name="login_accent">#FFFFFF</color>
     <color name="iron">#CCCCCC</color>
+    <color name="TextMenu">#615f5f</color>
 
 
 </resources>
