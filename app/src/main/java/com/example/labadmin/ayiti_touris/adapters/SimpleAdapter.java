@@ -10,10 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.labadmin.ayiti_touris.DetailsActivity;
+import com.example.labadmin.ayiti_touris.activities.DetailsActivity;
 import com.example.labadmin.ayiti_touris.models.Hotel;
 import com.example.labadmin.ayiti_touris.R;
-import com.example.labadmin.ayiti_touris.models.Monument;
 
 import java.util.List;
 

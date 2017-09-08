@@ -1,10 +1,14 @@
 package com.example.labadmin.ayiti_touris.utils;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
@@ -16,7 +20,7 @@ public class ListesEvent extends AppCompatActivity {
 
 
     String currentUrl;
-
+    ProgressDialog loadweb;
     WebView webvalue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,20 @@ public class ListesEvent extends AppCompatActivity {
         webvalue.setWebViewClient(new WebViewClient() {
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 Toast.makeText(activity, description, Toast.LENGTH_SHORT).show();
+               /* loadweb = new ProgressDialog(ListesEvent.this);
+                loadweb.setMessage("Chargement ...");
+                loadweb.getWindow().setBackgroundDrawable(new ColorDrawable(Color.BLUE));
+                loadweb.getWindow().setGravity(Gravity.CENTER);
+                loadweb.show();*/
             }
+
+            /*@Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                if (loadweb != null) {
+                    loadweb.dismiss();
+                }
+            }*/
         });
 
         webvalue.loadUrl("https://www.instagram.com/partyinginhaiti/");

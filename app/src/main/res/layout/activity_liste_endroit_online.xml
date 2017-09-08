@@ -75,12 +75,21 @@
             android:scrollbars="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
 
-          <ListView
+   <!-- <ProgressBar
+        android:id="@+id/HeaderProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" >
+    </ProgressBar>-->
+
+
+
+    <ListView
            android:id="@+id/lvendroit"
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:layout_below="@+id/toolbar_container"
-
+           android:divider="@null"
            android:padding="3dp"
            android:scrollbars="vertical"
            app:layout_behavior="@string/appbar_scrolling_view_behavior" />

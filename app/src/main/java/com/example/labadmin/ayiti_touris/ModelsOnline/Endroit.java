@@ -25,7 +25,8 @@ public class Endroit implements Serializable {
     private String informationEndroit;
     private String laltitudeEndroit;
     private String longitudeEndroit;
-    private int etoile;
+    private String etoile;
+    private  String id_lieu_touristique;
     private String ratingBar;
 
     public String getRatingBar() {
@@ -140,12 +141,21 @@ public class Endroit implements Serializable {
         this.longitudeEndroit = longitudeEndroit;
     }
 
-    public int getEtoile() {
+    public String getEtoile() {
         return etoile;
     }
 
-    public void setEtoile(int etoile) {
+    public void setEtoile(String etoile) {
         this.etoile = etoile;
+    }
+
+
+    public String getId_lieu_touristique() {
+        return id_lieu_touristique;
+    }
+
+    public void setId_lieu_touristique(String id_lieu_touristique) {
+        this.id_lieu_touristique = id_lieu_touristique;
     }
 
     public static ArrayList<Endroit> fromListMap(List<Map> map) {
@@ -161,14 +171,14 @@ public class Endroit implements Serializable {
             endroit.setImage3Endroit((String) map.get(i).get("image3"));
             endroit.setImage4Endroit((String) map.get(i).get("image4"));
             endroit.setImage5Endroit((String) map.get(i).get("image5"));
-            endroit.setEtoile((int) map.get(i).get("etoile"));
+            endroit.setEtoile((String) map.get(i).get("etoile"));
             endroit.setTelephoneEndroit((String) map.get(i).get("telephone"));
             endroit.setLaltitudeEndroit((String) map.get(i).get("laltitude"));
             endroit.setLongitudeEndroit((String) map.get(i).get("longitude"));
             endroit.setEmailEndroit((String) map.get(i).get("email"));
             endroit.setSitewebEndroit((String) map.get(i).get("siteweb"));
             endroit.setInformationEndroit((String) map.get(i).get("information"));
-
+            endroit.setId_lieu_touristique((String) map.get(i).get("objectId"));
 
             endroits.add(endroit);
         }

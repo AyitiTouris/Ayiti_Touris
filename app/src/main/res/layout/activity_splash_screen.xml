@@ -5,19 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/citadelle"
-    tools:context="com.example.labadmin.ayiti_touris.MainActivity">
+    tools:context="com.example.labadmin.ayiti_touris.activities.MainActivity">
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome"
-        android:textColor="@color/colorPrimaryDark1"
-        android:textSize="50sp"
-        android:textStyle="italic"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
 
     <ImageView
         android:id="@+id/imageView"

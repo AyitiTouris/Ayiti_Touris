@@ -3,10 +3,9 @@ package com.example.labadmin.ayiti_touris.utils;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.labadmin.ayiti_touris.MainActivity;
+import com.example.labadmin.ayiti_touris.activities.MainActivity;
 import com.example.labadmin.ayiti_touris.R;
 
 public class SplashScreen extends Activity {

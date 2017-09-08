@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d3d3d3">
+
+    <!-- <android.support.design.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+         android:id="@+id/coordinator"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         app:statusBarBackground="@color/darkPrimaryColor"
+         android:layout_alignParentTop="true"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentStart="true">-->
+
+
+    <FrameLayout
+        android:id="@+id/toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/darkPrimaryColor" />
+
+        <com.miguelcatalan.materialsearchview.MaterialSearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+    <!-- App Bar -->
+    <!-- <android.support.design.widget.AppBarLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         >
+
+
+         <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:id="@+id/toolbar"
+             android:layout_width="match_parent"
+             android:layout_height="?attr/actionBarSize"
+             android:background="@color/accentColor"
+             app:layout_scrollFlags="scroll|enterAlways">
+
+             <RelativeLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent">
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Hotels"
+                     android:textColor="#FFFFFF"
+                     android:textSize="30dp" />
+
+             </RelativeLayout>
+         </android.support.v7.widget.Toolbar>
+
+
+
+     </android.support.design.widget.AppBarLayout>-->
+
+    <!--Recyclerview -->
+    <!--  <android.support.v7.widget.RecyclerView
+          android:id="@+id/reciclador"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_below="@+id/coordinator"
+          android:padding="3dp"
+          android:scrollbars="vertical"
+          app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
+
+    <ListView
+        android:id="@+id/lvendroit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_container"
+
+        android:padding="3dp"
+        android:scrollbars="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+    <!--  </android.support.design.widget.CoordinatorLayout>-->
+</RelativeLayout>

@@ -56,7 +56,7 @@ public class AdapterEndroit extends ArrayAdapter<Endroit> {
             viewHolder.nomEndroit = (TextView) convertView.findViewById(R.id.tvnomEndroit);
             viewHolder.adresseEndroit = (TextView) convertView.findViewById(R.id.tvadresseEndroit);
             viewHolder.telephoneEndroit = (TextView) convertView.findViewById(R.id.tvtelephoneEndroit);
-           // viewHolder.etoile = (TextView) convertView.findViewById(R.id.tvetoile);
+            viewHolder.etoile = (TextView) convertView.findViewById(R.id.tvetoile);
            viewHolder.ratingBar = (RatingBar) convertView.findViewById(R.id.rating_bar);
             viewHolder.image1Endroit = (ImageView) convertView.findViewById(R.id.ivimage1Endroit);
             // Cache the viewHolder object inside the fresh view
@@ -72,15 +72,17 @@ public class AdapterEndroit extends ArrayAdapter<Endroit> {
         viewHolder.adresseEndroit.setText(endroit.getAdresseEndroit());
         viewHolder.telephoneEndroit.setText(endroit.getTelephoneEndroit());
        // viewHolder.image1Endroit.setText(endroit.getImage1Endroit());
-        //viewHolder.etoile.setText(Integer.toString(endroit.getEtoile()));
 
-        if(endroit.getEtoile()!=0) {
-            viewHolder.ratingBar.setRating(endroit.getEtoile());
+        if(endroit.getEtoile()!=null) {
+
+            viewHolder.ratingBar.setRating(Float.parseFloat(endroit.getEtoile()));
+            viewHolder.etoile.setVisibility(View.GONE);
+        }else if(endroit.getEtoile()==null) {
+
+            viewHolder.ratingBar.setVisibility(View.GONE);
+            viewHolder.etoile.setText(endroit.getEtoile());
         }
-        else
-        {
-            ratingBar.setVisibility(View.GONE);
-        }
+
        // ratingBar = (RatingBar)findViewById(R.id.rating_bar);
         //ratingBar.setRating(endroit.getEtoile());
 

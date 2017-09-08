@@ -28,7 +28,6 @@
         <!-- App Bar -->
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content">
 
 
@@ -37,7 +36,6 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-
                 android:background="@color/accentColor"
                 app:layout_scrollFlags="scroll|enterAlways"
                 >
@@ -46,15 +44,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"/>
-
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -62,12 +52,12 @@
                         android:text="Plages"
                         android:textColor="#FFFFFF"
                         android:textSize="30dp"
-                        android:fontFamily="cursive"
-                        />
+                        android:layout_centerVertical="true"/>
 
                 </RelativeLayout>
 
                 </android.support.v7.widget.Toolbar>
+
         </android.support.design.widget.AppBarLayout>
 
 
