@@ -9,11 +9,21 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.backendless.Backendless;
+import com.backendless.BackendlessUser;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
+import com.backendless.persistence.BackendlessDataQuery;
+import com.backendless.persistence.QueryOptions;
 import com.example.labadmin.ayiti_touris.ModelsOnline.Endroit;
 import com.example.labadmin.ayiti_touris.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
 
 /**
  * Created by domin on 30-Aug-17.
@@ -28,10 +38,12 @@ public class AdapterEndroit extends ArrayAdapter<Endroit> {
         TextView adresseEndroit;
 
         TextView telephoneEndroit;
-        ImageView image1Endroit;
+        ImageView image1Endroit,favoriteImg;
 
         TextView etoile;
         RatingBar ratingBar;
+        private List<Endroit> list;
+        ArrayList<Endroit> ListEndroit;
     }
 
     public AdapterEndroit(Context context, ArrayList<Endroit> users) {
@@ -42,7 +54,7 @@ public class AdapterEndroit extends ArrayAdapter<Endroit> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
 
-        Endroit endroit = getItem(position);
+       final Endroit endroit = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
 
         ViewHolder viewHolder; // view lookup cache stored in tag
@@ -59,6 +71,7 @@ public class AdapterEndroit extends ArrayAdapter<Endroit> {
             viewHolder.etoile = (TextView) convertView.findViewById(R.id.tvetoile);
            viewHolder.ratingBar = (RatingBar) convertView.findViewById(R.id.rating_bar);
             viewHolder.image1Endroit = (ImageView) convertView.findViewById(R.id.ivimage1Endroit);
+            viewHolder.favoriteImg = (ImageView) convertView.findViewById(R.id.ivfavorite);
             // Cache the viewHolder object inside the fresh view
             convertView.setTag(viewHolder);
         } else {
@@ -67,12 +80,12 @@ public class AdapterEndroit extends ArrayAdapter<Endroit> {
         }
         // Populate the data from the data object via the viewHolder object
         // into the template view.
-
+       //Endroit endroit1=listgetItem(position);
         viewHolder.nomEndroit.setText(endroit.getNomEndroit());
         viewHolder.adresseEndroit.setText(endroit.getAdresseEndroit());
         viewHolder.telephoneEndroit.setText(endroit.getTelephoneEndroit());
        // viewHolder.image1Endroit.setText(endroit.getImage1Endroit());
-
+            viewHolder.favoriteImg.setVisibility(View.GONE);
         if(endroit.getEtoile()!=null) {
 
             viewHolder.ratingBar.setRating(Float.parseFloat(endroit.getEtoile()));
@@ -82,6 +95,9 @@ public class AdapterEndroit extends ArrayAdapter<Endroit> {
             viewHolder.ratingBar.setVisibility(View.GONE);
             viewHolder.etoile.setText(endroit.getEtoile());
         }
+
+
+
 
        // ratingBar = (RatingBar)findViewById(R.id.rating_bar);
         //ratingBar.setRating(endroit.getEtoile());
@@ -103,5 +119,46 @@ public class AdapterEndroit extends ArrayAdapter<Endroit> {
         //viewHolder.textrecette.setText(recettes.fromListMap()+);
         return convertView;
     }
+
+  /*  public  void test()
+{
+
+    QueryOptions options = new QueryOptions();
+
+    options.setRelated( Arrays.asList( "usersThatLike" ) );
+
+    BackendlessDataQuery query = new BackendlessDataQuery();
+
+    query.setQueryOptions( options );
+
+    Backendless.Data.of(Endroit.class).find(query, new AsyncCallback<List<Endroit>>() {
+
+        @Override
+
+        public void handleResponse(List<Endroit> response) {
+            String userId = Backendless.UserService.CurrentUser().getObjectId();
+            for (Endroit feed: response.()) {
+                feed = .getItem(position);
+
+                List<BackendlessUser> likedUsers = feed.getu();
+
+                for (BackendlessUser user : likedUsers)
+                    if (user.getObjectId().equals(userId)) {
+                        holder.like.setBackgroundResource(R.drawable.ic_star_rate_on);
+                    } else if (!user.getObjectId().equals(userId)) {
+                        holder.like.setBackgroundResource(R.drawable.ic_star_rate_off);
+                    }
+            }
+
+        }
+
+        @Override
+
+        public void handleFault(BackendlessFault backendlessFault) {
+
+        }
+
+    });
+}*/
 
 }

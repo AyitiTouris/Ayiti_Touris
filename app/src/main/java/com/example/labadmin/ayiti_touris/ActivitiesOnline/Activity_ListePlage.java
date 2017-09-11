@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -25,6 +26,7 @@ import com.example.labadmin.ayiti_touris.AdaptersOnline.AdapterEndroit;
 import com.example.labadmin.ayiti_touris.ModelsOnline.BackendSettings;
 import com.example.labadmin.ayiti_touris.ModelsOnline.Endroit;
 import com.example.labadmin.ayiti_touris.R;
+import com.example.labadmin.ayiti_touris.utils.NetWork;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
@@ -35,10 +37,10 @@ public class Activity_ListePlage extends AppCompatActivity {
 
     public android.app.ProgressDialog barProgressDialog, proDialog,ProgressDialog,loadweb;
     ArrayList<Endroit> ListEndroit;
-    ListView lvclub;
+    ListView lvendroit;
     AdapterEndroit adapterendroit;
     private MaterialSearchView searchView;
-
+    private SwipeRefreshLayout swipeContainer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +49,7 @@ public class Activity_ListePlage extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         setTitle("Plages");
-
+        toolbar.setTitleTextColor(android.graphics.Color.WHITE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         //search
@@ -68,6 +70,7 @@ public class Activity_ListePlage extends AppCompatActivity {
          * Methode populate data dans le listeView
          */
         fetchListePlage();
+        Refresh();
 
 /**
  * setup search in tools bar
@@ -89,7 +92,7 @@ public class Activity_ListePlage extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String query) {
                 ListEndroit.clear();
-                fetchEndroit(query);
+                fetchSearchPlage(query);
                 return true;
             }
         });
@@ -97,12 +100,14 @@ public class Activity_ListePlage extends AppCompatActivity {
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
-                //Do some magic
+               ListEndroit.clear();
+                fetchListePlage();
             }
 
             @Override
             public void onSearchViewClosed() {
-                //Do some magic
+               ListEndroit.clear();
+                fetchListePlage();
             }
         });
 
@@ -113,41 +118,20 @@ public class Activity_ListePlage extends AppCompatActivity {
 
         Backendless.initApp(getApplicationContext(), BackendSettings.APPLICATION_ID, BackendSettings.ANDROID_SECRET_KEY);
 
-        lvclub = (ListView) findViewById(R.id.lvendroit);
+        lvendroit = (ListView) findViewById(R.id.lvendroit);
         ListEndroit = new ArrayList<>();
         adapterendroit = new AdapterEndroit(this, ListEndroit);
 
         // Setup Adapter
-        lvclub.setAdapter(adapterendroit);
-        lvclub.setTextFilterEnabled(true);
-
-       /* lvendroit.setOnScrollListener(new EndlessScrollListener() {
-            @Override
-            public boolean onLoadMore(int page, int totalItemsCount) {
-                Long sinceId = getOldestTweetId();
-                client.getOlderHomeTimeline(new TwitterClient.TimelineResponseHandler() {
-                    @Override
-                    public void onSuccess(List<Tweet> tweets) {
-                        adapterendroit.addAll(tweets.isEmpty() ? tweets : tweets.subList(1, tweets.size()));
-                    }
-
-                    @Override
-                    public void onFailure(Throwable error) {
-                        logError(error);
-                    }
-                }, sinceId);
-                return true;
-            }
-        });*/
-
-
+        lvendroit.setAdapter(adapterendroit);
+        lvendroit.setTextFilterEnabled(true);
 
 
         // }
 
         // evenement click sur un evenement de la liste
 
-        lvclub.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvendroit.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -164,90 +148,127 @@ public class Activity_ListePlage extends AppCompatActivity {
 
 
     public void fetchListePlage(){
-
-        IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
-        //IDataStore<Map> imageStorage = Backendless.Data.of( "images" );
-        DataQueryBuilder queryBuilder = DataQueryBuilder.create();
-
-
-        Intent intent = getIntent();
-
-        //  final String value = intent.getStringExtra("key");
-
-        queryBuilder.setWhereClause("id_categorie='"+BackendSettings.PLAGE_ID+"'");
-
-
-        showProgress();
-
-        endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
-
+        boolean connexion= NetWork.checkConnexion(this);
+        if(!connexion)
         {
 
+            Toast.makeText(this,"impossible de continuer, verifier la connexion internet", Toast.LENGTH_LONG).show();
+        } else {
 
-            @Override
-            public void handleResponse(List<Map> response) {
+            IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
+            //IDataStore<Map> imageStorage = Backendless.Data.of( "images" );
+            DataQueryBuilder queryBuilder = DataQueryBuilder.create();
 
-                adapterendroit.addAll(Endroit.fromListMap(response));
-                adapterendroit.notifyDataSetChanged();
-                // Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                if (loadweb != null) {
+
+            Intent intent = getIntent();
+
+            //  final String value = intent.getStringExtra("key");
+
+            queryBuilder.setWhereClause("id_categorie='" + BackendSettings.PLAGE_ID + "'");
+
+
+            showProgress();
+
+            endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
+
+            {
+
+
+                @Override
+                public void handleResponse(List<Map> response) {
                     loadweb.dismiss();
+
+                    adapterendroit.addAll(Endroit.fromListMap(response));
+                    adapterendroit.notifyDataSetChanged();
+                    // Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+
+                    Log.d("DEBUG", lvendroit.toString());
                 }
 
-                Log.d("DEBUG", lvclub.toString());
-            }
+                @Override
+                public void handleFault(BackendlessFault fault) {
 
-            @Override
-            public void handleFault(BackendlessFault fault) {
+                    Toast.makeText(getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
+                }
+            });
+        }
     }
 
 
 
-    private void fetchEndroit(String query) {
-
-        //  String whereClause = "categorie=Viandes";
-        IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
-
-        DataQueryBuilder queryBuilder = DataQueryBuilder.create();
-        // queryBuilder.setWhereClause( whereClause.toString());
-
-        queryBuilder.setWhereClause("nom like'" + query + "%'");
-        queryBuilder.addSortBy("nom");
-
-        showProgress();
-
-        endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
-
+    private void fetchSearchPlage(String query) {
+        boolean connexion= NetWork.checkConnexion(this);
+        if(!connexion)
         {
-            @Override
-            public void handleResponse(List<Map> response) {
 
-                adapterendroit.addAll(Endroit.fromListMap(response));
-                adapterendroit.notifyDataSetChanged();
-                if (loadweb!=null)
-                {
+            Toast.makeText(this,"impossible de continuer, verifier la connexion internet", Toast.LENGTH_LONG).show();
+        } else {
+
+            //  String whereClause = "categorie=Viandes";
+            IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
+
+            DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+            // queryBuilder.setWhereClause( whereClause.toString());
+
+            queryBuilder.setWhereClause("nom like'" + query + "%'");
+            queryBuilder.addSortBy("nom");
+
+          //  showProgress();
+
+            endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
+
+            {
+                @Override
+                public void handleResponse(List<Map> response) {
                     loadweb.dismiss();
-                }
-                Log.d("DEBUG", lvclub.toString());
-                Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
 
-            }
+                    adapterendroit.addAll(Endroit.fromListMap(response));
+                    adapterendroit.notifyDataSetChanged();
+
+                    Log.d("DEBUG", lvendroit.toString());
+                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void handleFault(BackendlessFault fault) {
+
+                    Toast.makeText(getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }
+
+    }
+
+    public void Refresh()
+    {
+
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override
-            public void handleFault(BackendlessFault fault) {
+            public void onRefresh() {
+                //CLEAR OUT old items before appending in the new ones:
+                //adapterendroit.clear();
+                //  ListEndroit.clear();
+                // adapterendroit.notifyDataSetChanged();
 
-                Toast.makeText(getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
+                fetchListePlage();
+                //fetchHardcodedData();
 
+                //signal refresh has finished:
+                swipeContainer.setRefreshing(false);
             }
+
+
         });
 
-
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
     }
 
     /**

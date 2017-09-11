@@ -1,5 +1,6 @@
 package com.example.labadmin.ayiti_touris.ActivitiesOnline;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +28,7 @@ import com.example.labadmin.ayiti_touris.ModelsOnline.BackendSettings;
 import com.example.labadmin.ayiti_touris.ModelsOnline.LoadingCallback;
 import com.example.labadmin.ayiti_touris.ModelsOnline.Validator;
 import com.example.labadmin.ayiti_touris.R;
+import com.example.labadmin.ayiti_touris.activities.MainActivity;
 
 public class LoginActivity extends Activity {
 
@@ -49,7 +52,7 @@ public class LoginActivity extends Activity {
         Button loginTwitterButton = (Button) findViewById( R.id.loginTwitterButton );
         loginTwitterButton.setOnClickListener( createLoginWithTwitterButtonListener() );*/
 
-        Registration=(Button)findViewById(R.id.btnSignUp);
+       /* Registration=(Button)findViewById(R.id.btnSignUp);
 
         Registration.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,10 +61,10 @@ public class LoginActivity extends Activity {
                 startRegistrationActivity();
 
             }
-        });
+        });*/
 
-        //makeRegistrationLink();
-
+        makeRegistrationLink();
+        makePlustardLink();
     }
 
 
@@ -71,7 +74,7 @@ public class LoginActivity extends Activity {
     /**
      * Makes registration link clickable and assigns it a click listener.
      */
-   /* public void makeRegistrationLink()
+    public void makeRegistrationLink()
     {
         SpannableString registrationPrompt = new SpannableString( getString( R.string.register_prompt ) );
 
@@ -92,7 +95,32 @@ public class LoginActivity extends Activity {
         TextView registerPromptView = (TextView) findViewById( R.id.registerPromptText );
         registerPromptView.setText( registrationPrompt );
         registerPromptView.setMovementMethod( LinkMovementMethod.getInstance() );
-    }*/
+    }
+
+
+    public void makePlustardLink()
+    {
+        SpannableString registrationPrompt = new SpannableString( getString( R.string.plustard ) );
+
+        ClickableSpan clickableSpan = new ClickableSpan()
+        {
+            @Override
+            public void onClick( View widget )
+            {
+                Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        };
+
+        String linkText = getString( R.string.link );
+        int linkStartIndex = registrationPrompt.toString().indexOf( linkText );
+        int linkEndIndex = linkStartIndex + linkText.length();
+        registrationPrompt.setSpan(clickableSpan, linkStartIndex, linkEndIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE );
+
+        TextView registerPromptView = (TextView) findViewById( R.id.Read );
+        registerPromptView.setText( registrationPrompt );
+        registerPromptView.setMovementMethod( LinkMovementMethod.getInstance() );
+    }
 
 
 

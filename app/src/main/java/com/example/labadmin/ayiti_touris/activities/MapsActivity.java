@@ -15,7 +15,9 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -76,7 +78,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         progress = new ProgressDialog(MapsActivity.this);
         progress.setMessage("Loading...");
 
-        Toast.makeText(MapsActivity.this, ""+Longitude +"--"+ Latitude, Toast.LENGTH_SHORT).show();
+
+       // Toast.makeText(MapsActivity.this, ""+longitudeGPS +"  "+ latitudeGPS, Toast.LENGTH_SHORT).show();
+
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -133,7 +138,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-
                     //Toast.makeText(MapsActivity.this, "GPS Provider update"+longitudeGPS+" Lat"+latitudeGPS, Toast.LENGTH_SHORT).show();
                 }
             });
@@ -211,7 +215,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         LatLng sydney = new LatLng(latitudeGPS,longitudeGPS);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Your Position"));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Votre Position"));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitudeGPS, longitudeGPS), 12.0f));
 
     }
@@ -231,14 +235,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         LatLng sydney = new LatLng(lat,lng);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Your Position"));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("your Position"));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 12.0f));
 
         String directionApiPath = Helper.getUrl(String.valueOf(lat), String.valueOf(lng),
-                String.valueOf(18.514564), String.valueOf(72.290057));
+                String.valueOf(Latitude), String.valueOf(Longitude));
+              //  String.valueOf(18.514564), String.valueOf(-72.290057));
 
         getDirectionFromDirectionApiServer(directionApiPath);
     }
+
+
+    /**
+     * calculer la distance
+     * @param
+     */
+
 
 
 

@@ -18,9 +18,8 @@ import com.example.labadmin.ayiti_touris.R;
 
 public class ListesEvent extends AppCompatActivity {
 
-
+    ProgressDialog mProgressDialog;
     String currentUrl;
-    ProgressDialog loadweb;
     WebView webvalue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,8 @@ public class ListesEvent extends AppCompatActivity {
         setToolbar();
         if (getSupportActionBar() != null) // button option
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        //mProgressDialog = setupProgressDialog();
+        Progress();
         webvalue = (WebView)findViewById(R.id.web_value);
 
         webvalue.getSettings().setJavaScriptEnabled(true); // enable javascript
@@ -40,23 +40,27 @@ public class ListesEvent extends AppCompatActivity {
         webvalue.setWebViewClient(new WebViewClient() {
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 Toast.makeText(activity, description, Toast.LENGTH_SHORT).show();
-               /* loadweb = new ProgressDialog(ListesEvent.this);
-                loadweb.setMessage("Chargement ...");
-                loadweb.getWindow().setBackgroundDrawable(new ColorDrawable(Color.BLUE));
-                loadweb.getWindow().setGravity(Gravity.CENTER);
-                loadweb.show();*/
+
             }
 
-            /*@Override
+            @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                if (loadweb != null) {
-                    loadweb.dismiss();
-                }
-            }*/
+                mProgressDialog.dismiss();
+            }
         });
 
         webvalue.loadUrl("https://www.instagram.com/partyinginhaiti/");
+
+    }
+
+
+    // TODO: check if using ProgressBar is better
+    public void Progress() {
+        mProgressDialog =  new ProgressDialog(ListesEvent.this);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setMessage("Chargement");
+        mProgressDialog.show();
 
     }
 

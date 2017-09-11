@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -25,6 +26,7 @@ import com.example.labadmin.ayiti_touris.AdaptersOnline.AdapterEndroit;
 import com.example.labadmin.ayiti_touris.ModelsOnline.BackendSettings;
 import com.example.labadmin.ayiti_touris.ModelsOnline.Endroit;
 import com.example.labadmin.ayiti_touris.R;
+import com.example.labadmin.ayiti_touris.utils.NetWork;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
@@ -38,7 +40,7 @@ public class Activity_ListeResto extends AppCompatActivity {
     ListView lvclub;
     AdapterEndroit adapterendroit;
     private MaterialSearchView searchView;
-
+    private SwipeRefreshLayout swipeContainer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +49,7 @@ public class Activity_ListeResto extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         setTitle("restaurant");
-
+        toolbar.setTitleTextColor(android.graphics.Color.WHITE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         //search
@@ -68,6 +70,7 @@ public class Activity_ListeResto extends AppCompatActivity {
          * Methode populate data dans le listeView
          */
         fetchListeResto();
+        Refresh();
 
 /**
  * setup search in tools bar
@@ -97,12 +100,14 @@ public class Activity_ListeResto extends AppCompatActivity {
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
-                //Do some magic
+               ListEndroit.clear();
+                fetchListeResto();
             }
 
             @Override
             public void onSearchViewClosed() {
-                //Do some magic
+                ListEndroit.clear();
+                fetchListeResto();
             }
         });
 
@@ -127,9 +132,6 @@ public class Activity_ListeResto extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //view is an instance of MovieView
-                //Expose details of movie (ratings (out of 10), popularity, and synopsis
-                //ratings using RatingBar
 
                 Endroit endroit = ListEndroit.get(position);
 
@@ -143,89 +145,124 @@ public class Activity_ListeResto extends AppCompatActivity {
 
 
     public void fetchListeResto(){
-
-        IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
-        //IDataStore<Map> imageStorage = Backendless.Data.of( "images" );
-        DataQueryBuilder queryBuilder = DataQueryBuilder.create();
-
-        Intent intent = getIntent();
-
-        //  final String value = intent.getStringExtra("key");
-
-        queryBuilder.setWhereClause("id_categorie='"+BackendSettings.RESTAURANT_ID+"'");
-
-
-        showProgress();
-
-        endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
-
+        boolean connexion= NetWork.checkConnexion(this);
+        if(!connexion)
         {
 
+            Toast.makeText(this,"impossible de continuer, verifier la connexion internet", Toast.LENGTH_LONG).show();
+        } else {
+            IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
+            //IDataStore<Map> imageStorage = Backendless.Data.of( "images" );
+            DataQueryBuilder queryBuilder = DataQueryBuilder.create();
 
-            @Override
-            public void handleResponse(List<Map> response) {
+            Intent intent = getIntent();
 
-                adapterendroit.addAll(Endroit.fromListMap(response));
-                adapterendroit.notifyDataSetChanged();
-                // Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                if (loadweb != null) {
+            //  final String value = intent.getStringExtra("key");
+
+            queryBuilder.setWhereClause("id_categorie='" + BackendSettings.RESTAURANT_ID + "'");
+
+
+            showProgress();
+
+            endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
+
+            {
+
+
+                @Override
+                public void handleResponse(List<Map> response) {
                     loadweb.dismiss();
+                    adapterendroit.addAll(Endroit.fromListMap(response));
+                    adapterendroit.notifyDataSetChanged();
+                    // Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+
+
+                    Log.d("DEBUG", lvclub.toString());
                 }
 
-                Log.d("DEBUG", lvclub.toString());
-            }
+                @Override
+                public void handleFault(BackendlessFault fault) {
 
-            @Override
-            public void handleFault(BackendlessFault fault) {
+                    Toast.makeText(getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
+                }
+            });
+        }
     }
 
 
 
     private void fetchSearchResto(String query) {
-
-        //  String whereClause = "categorie=Viandes";
-        IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
-
-        DataQueryBuilder queryBuilder = DataQueryBuilder.create();
-        // queryBuilder.setWhereClause( whereClause.toString());
-
-        queryBuilder.setWhereClause("nom like'" + query + "%'");
-        queryBuilder.addSortBy("nom");
-
-        showProgress();
-
-        endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
-
+        boolean connexion= NetWork.checkConnexion(this);
+        if(!connexion)
         {
-            @Override
-            public void handleResponse(List<Map> response) {
 
-                adapterendroit.addAll(Endroit.fromListMap(response));
-                adapterendroit.notifyDataSetChanged();
-                if (loadweb!=null)
-                {
+            Toast.makeText(this,"impossible de continuer, verifier la connexion internet", Toast.LENGTH_LONG).show();
+        } else {
+            //  String whereClause = "categorie=Viandes";
+            IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
+
+            DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+            // queryBuilder.setWhereClause( whereClause.toString());
+
+            queryBuilder.setWhereClause("nom like'" + query + "%'");
+            queryBuilder.addSortBy("nom");
+
+          //  showProgress();
+
+            endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
+
+            {
+                @Override
+                public void handleResponse(List<Map> response) {
                     loadweb.dismiss();
-                }
-                Log.d("DEBUG", lvclub.toString());
-                Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                    adapterendroit.addAll(Endroit.fromListMap(response));
+                    adapterendroit.notifyDataSetChanged();
 
-            }
+                    Log.d("DEBUG", lvclub.toString());
+                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void handleFault(BackendlessFault fault) {
+
+                    Toast.makeText(getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }
+
+    }
+
+
+    public void Refresh()
+    {
+
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override
-            public void handleFault(BackendlessFault fault) {
+            public void onRefresh() {
+                //CLEAR OUT old items before appending in the new ones:
+                //adapterendroit.clear();
+                //  ListEndroit.clear();
+                // adapterendroit.notifyDataSetChanged();
 
-                Toast.makeText(getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
+                fetchListeResto();
+                //fetchHardcodedData();
 
+                //signal refresh has finished:
+                swipeContainer.setRefreshing(false);
             }
+
+
         });
 
-
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
     }
 
 

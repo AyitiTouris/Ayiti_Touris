@@ -45,18 +45,28 @@
 
             <TextView
                 android:id="@+id/tvnomEndroit"
-                android:layout_width="322dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?attr/textAppearanceListItem"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/ivimage1Endroit"
                 android:layout_toEndOf="@+id/ivimage1Endroit" />
 
+       <ImageView
+           android:id="@+id/ivfavorite"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_alignParentTop="true"
+           android:background="@drawable/ic_favorite_done"
+           android:contentDescription="favorites" />
+
         <TextView
             android:id="@+id/tvadresseEndroit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           android:layout_below="@+id/tvnomEndroit"
+            android:layout_below="@+id/tvnomEndroit"
+            android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/ivimage1Endroit"
             android:textSize="10sp" />
 
@@ -66,6 +76,7 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_below="@+id/tvadresseEndroit"
+           android:layout_alignParentBottom="true"
            android:layout_alignParentRight="true"
            android:textSize="10sp" />
 
@@ -86,12 +97,11 @@
            android:layout_gravity="center_horizontal"
            android:layout_marginTop="5dp"
            android:isIndicator="true"
-
            android:layout_below="@+id/tvadresseEndroit"
            android:layout_toRightOf="@+id/ivimage1Endroit"
            android:progressDrawable="@drawable/my_rating"
-
            />
+
 
 
    </RelativeLayout>

@@ -28,7 +28,7 @@ public class AdapterFavorite extends ArrayAdapter<Endroit> {
         TextView adresseEndroit;
 
         TextView telephoneEndroit;
-        ImageView image1Endroit;
+        ImageView image1Endroit, ivfavorite;
 
         TextView etoile;
         RatingBar ratingBar;
@@ -60,6 +60,7 @@ public class AdapterFavorite extends ArrayAdapter<Endroit> {
             viewHolder.ratingBar = (RatingBar) convertView.findViewById(R.id.rating_bar);
             viewHolder.image1Endroit = (ImageView) convertView.findViewById(R.id.ivimage1Endroit);
             // Cache the viewHolder object inside the fresh view
+            viewHolder.ivfavorite = (ImageView) convertView.findViewById(R.id.ivfavorite);
             convertView.setTag(viewHolder);
         } else {
             // View is being recycled, retrieve the viewHolder object from tag
@@ -72,7 +73,7 @@ public class AdapterFavorite extends ArrayAdapter<Endroit> {
         viewHolder.adresseEndroit.setText(endroit.getAdresseEndroit());
         viewHolder.telephoneEndroit.setText(endroit.getTelephoneEndroit());
         // viewHolder.image1Endroit.setText(endroit.getImage1Endroit());
-
+            viewHolder.ivfavorite.setVisibility(View.VISIBLE);
         if(endroit.getEtoile()!=null) {
 
             viewHolder.ratingBar.setRating(Float.parseFloat(endroit.getEtoile()));

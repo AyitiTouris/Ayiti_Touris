@@ -3,6 +3,10 @@ package com.example.labadmin.ayiti_touris.ActivitiesOnline;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +33,10 @@ import com.example.labadmin.ayiti_touris.R;
 import com.squareup.picasso.Picasso;
 
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -101,7 +109,7 @@ public class Activity_DetailsEndroit extends AppCompatActivity {
         // Recupere boutton
         btnmap=(FloatingActionButton)findViewById(R.id.location);
         btnfavorite=(FloatingActionButton)findViewById(R.id.fabFavorite);
-
+        //btnfavorite.setBackgroundResource(R.drawable.ic_favorit_default);
 
 
         //recupere nom
@@ -237,7 +245,10 @@ public class Activity_DetailsEndroit extends AppCompatActivity {
         btnfavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 saveFavorit();
+                btnfavorite.setEnabled(false);
                // Toast.makeText(Activity_DetailsEndroit.this, ""+endroit.getId_lieu_touristique(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -303,7 +314,7 @@ public class Activity_DetailsEndroit extends AppCompatActivity {
                 @Override
                 public void handleResponse(Map response) {
 
-                    Toast.makeText(Activity_DetailsEndroit.this, "Succes", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_DetailsEndroit.this, "Favorit", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -326,7 +337,8 @@ public class Activity_DetailsEndroit extends AppCompatActivity {
             alertDialog.setNegativeButton("NON",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,  int which) {
-                            Toast.makeText(getApplicationContext(), "You clicked on NO", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), "You clicked on NO", Toast.LENGTH_SHORT).show();
+                            btnfavorite.setEnabled(true);
                             dialog.dismiss();
                            // tv.setText("No Button clicked");
                         }
@@ -337,7 +349,8 @@ public class Activity_DetailsEndroit extends AppCompatActivity {
                             // Write your code here to execute after dialog
                             Intent intent=new Intent(Activity_DetailsEndroit.this,LoginActivity.class);
                             startActivity(intent);
-                            Toast.makeText(getApplicationContext(), "You clicked on YES", Toast.LENGTH_SHORT).show();
+                            btnfavorite.setEnabled(true);
+                            //Toast.makeText(getApplicationContext(), "You clicked on YES", Toast.LENGTH_SHORT).show();
                             //tv.setText("Yes Button clicked");
                         }
                     });
@@ -349,10 +362,12 @@ public class Activity_DetailsEndroit extends AppCompatActivity {
     }
 
 
+    
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.detail, menu);
         return true;
     }
 
@@ -366,6 +381,11 @@ public class Activity_DetailsEndroit extends AppCompatActivity {
                 return true;
             case R.id.action_add:
                 //showSnackBar("");
+                return true;
+
+            case R.id.action_share:
+               // shareImage(endroit.getImage1Endroit())
+                Toast.makeText(getApplicationContext(), "You clicked on YES", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.action_favorite:
                 //showSnackBar("Favorite");
