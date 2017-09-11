@@ -40,5 +40,8 @@
     <color name="iron">#CCCCCC</color>
     <color name="TextMenu">#615f5f</color>
 
+    <!-- login couleur -->
+    <color name="loginfond">#a0a9b1</color>
+
 
 </resources>

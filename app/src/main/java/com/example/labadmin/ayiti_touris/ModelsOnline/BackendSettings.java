@@ -3,9 +3,11 @@ package com.example.labadmin.ayiti_touris.ModelsOnline;
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Gravity;
 
 import com.example.labadmin.ayiti_touris.ActivitiesOnline.Activity_ListeClub;
+import com.example.labadmin.ayiti_touris.R;
 
 /**
  * Provides values used to communicate with backend.

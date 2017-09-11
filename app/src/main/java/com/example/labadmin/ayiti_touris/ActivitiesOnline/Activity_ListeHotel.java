@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -14,22 +15,30 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.backendless.Backendless;
+import com.backendless.BackendlessUser;
 import com.backendless.IDataStore;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
+import com.backendless.persistence.BackendlessDataQuery;
 import com.backendless.persistence.DataQueryBuilder;
+import com.backendless.persistence.QueryOptions;
 import com.example.labadmin.ayiti_touris.AdaptersOnline.AdapterEndroit;
 import com.example.labadmin.ayiti_touris.ModelsOnline.Endroit;
 import com.example.labadmin.ayiti_touris.R;
+import com.example.labadmin.ayiti_touris.utils.NetWork;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.example.labadmin.ayiti_touris.ModelsOnline.BackendSettings;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import static android.R.id.list;
 
 public class Activity_ListeHotel extends AppCompatActivity {
 
@@ -39,18 +48,20 @@ public class Activity_ListeHotel extends AppCompatActivity {
     ArrayList<Endroit> ListEndroit;
     ListView lvendroit;
     AdapterEndroit adapterendroit;
-    //String Hotel = "Hotel", Club = "Club", Monument = "Monument", Restaurant = "Restaurant";
+    ProgressBar progressBar;
 
+    private SwipeRefreshLayout swipeContainer;
     private MaterialSearchView searchView;
 
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_hotel_online);
 
-            setTitle("Liste Hotel");
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+            setTitle("Liste Hotel");
+            toolbar.setTitleTextColor(android.graphics.Color.WHITE);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -67,6 +78,8 @@ public class Activity_ListeHotel extends AppCompatActivity {
             }
         });
 
+          //  progressBar = (ProgressBar) findViewById(R.id.HeaderProgress);
+            //progressBar.setVisibility(View.GONE);
 
 
 
@@ -93,17 +106,20 @@ public class Activity_ListeHotel extends AppCompatActivity {
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
-                //Do some magic
+                ListEndroit.clear();
+                fetchListeHotel();
             }
 
             @Override
             public void onSearchViewClosed() {
-                //Do some magic
+                ListEndroit.clear();
+                fetchListeHotel();
             }
         });
 
         //fin search
             fetchListeHotel();
+            Refresh();
 
             //Initialisation API
 
@@ -116,34 +132,6 @@ public class Activity_ListeHotel extends AppCompatActivity {
         // Setup Adapter
         lvendroit.setAdapter(adapterendroit);
         lvendroit.setTextFilterEnabled(true);
-
-       /* lvendroit.setOnScrollListener(new EndlessScrollListener() {
-            @Override
-            public boolean onLoadMore(int page, int totalItemsCount) {
-                Long sinceId = getOldestTweetId();
-                client.getOlderHomeTimeline(new TwitterClient.TimelineResponseHandler() {
-                    @Override
-                    public void onSuccess(List<Tweet> tweets) {
-                        adapterendroit.addAll(tweets.isEmpty() ? tweets : tweets.subList(1, tweets.size()));
-                    }
-
-                    @Override
-                    public void onFailure(Throwable error) {
-                        logError(error);
-                    }
-                }, sinceId);
-                return true;
-            }
-        });*/
-
-
-
-
-
-
-
-
-
 
 
         lvendroit.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -168,91 +156,129 @@ public class Activity_ListeHotel extends AppCompatActivity {
      * Methode pour lister les hotel
      */
 
+
+
+
     public void fetchListeHotel(){
-
-        IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique" );
-        //IDataStore<Map> imageStorage = Backendless.Data.of( "images" );
-        DataQueryBuilder queryBuilder = DataQueryBuilder.create();
-
-        Intent intent = getIntent();
-
-        //  final String value = intent.getStringExtra("key");
-
-        queryBuilder.setWhereClause("id_categorie='"+BackendSettings.HOTEL_ID +"'");
-        showProgress();
-
-        endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
-
+        boolean connexion= NetWork.checkConnexion(this);
+        if(!connexion)
         {
 
-            @Override
-            public void handleResponse(List<Map> response) {
+            Toast.makeText(this,"impossible de continuer, verifier la connexion internet", Toast.LENGTH_LONG).show();
+        } else {
 
-                adapterendroit.addAll(Endroit.fromListMap(response));
-                adapterendroit.notifyDataSetChanged();
-                // Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                if(loadweb!=null) {
+            IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
+            DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+
+            Intent intent = getIntent();
+
+            //  final String value = intent.getStringExtra("key");
+
+            queryBuilder.setWhereClause("id_categorie='" + BackendSettings.HOTEL_ID + "'");
+            showProgress();
+            //progressBar.setVisibility(View.VISIBLE);
+
+            endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
+
+            {
+
+                @Override
+                public void handleResponse(List<Map> response) {
                     loadweb.dismiss();
+                    //progressBar.setVisibility(View.GONE);
+                    adapterendroit.addAll(Endroit.fromListMap(response));
+                    adapterendroit.notifyDataSetChanged();
+                    // Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                   // if (loadweb != null) {
+                    //
+                  //  }
+
+                    Log.d("DEBUG", lvendroit.toString());
                 }
 
-                Log.d("DEBUG", lvendroit.toString());
-            }
+                @Override
+                public void handleFault(BackendlessFault fault) {
 
-            @Override
-            public void handleFault(BackendlessFault fault) {
+                    Toast.makeText(getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
+                }
+            });
+        }
     }
 
 
 
     private void fetchSearchHotel(String query) {
-         //  String whereClause = "categorie=Viandes";
-        IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
-
-        DataQueryBuilder queryBuilder = DataQueryBuilder.create();
-        // queryBuilder.setWhereClause( whereClause.toString());
-
-        queryBuilder.setWhereClause("nom like'" + query + "%'");
-        queryBuilder.addSortBy("nom");
-
-        showProgress();
-
-        endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
-
+        boolean connexion= NetWork.checkConnexion(this);
+        if(!connexion)
         {
-            @Override
-            public void handleResponse(List<Map> response) {
 
-                adapterendroit.addAll(Endroit.fromListMap(response));
-                adapterendroit.notifyDataSetChanged();
-                if (loadweb!=null)
-                {
-                    loadweb.dismiss();
+            Toast.makeText(this,"impossible de continuer, verifier la connexion internet", Toast.LENGTH_LONG).show();
+        } else {
+            //  String whereClause = "categorie=Viandes";
+            IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
+
+            DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+            // queryBuilder.setWhereClause( whereClause.toString());
+
+            queryBuilder.setWhereClause("nom like'" + query + "%'");
+            queryBuilder.addSortBy("nom");
+
+            //showProgress();
+
+            endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
+
+            {
+                @Override
+                public void handleResponse(List<Map> response) {
+
+                    adapterendroit.addAll(Endroit.fromListMap(response));
+                    adapterendroit.notifyDataSetChanged();
+                    if (loadweb != null) {
+                        loadweb.dismiss();
+                    }
+                    Log.d("DEBUG", lvendroit.toString());
+                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+
                 }
-                Log.d("DEBUG", lvendroit.toString());
-                Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
 
-            }
+                @Override
+                public void handleFault(BackendlessFault fault) {
 
-            @Override
-            public void handleFault(BackendlessFault fault) {
+                    Toast.makeText(getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
+                }
+            });
+        }
 
     }
 
 
 
+    public void Refresh()
+    {
 
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+
+                fetchListeHotel();
+                //fetchHardcodedData();
+
+                //signal refresh has finished:
+                swipeContainer.setRefreshing(false);
+            }
+
+
+        });
+
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -328,12 +354,4 @@ public class Activity_ListeHotel extends AppCompatActivity {
     }
 
 
-    private void setUpClickListener() {
-
-    }
-
-    private void setToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-    }
-}
+   }

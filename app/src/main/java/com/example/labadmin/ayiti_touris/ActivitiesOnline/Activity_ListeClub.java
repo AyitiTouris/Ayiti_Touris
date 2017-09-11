@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -25,6 +26,7 @@ import com.example.labadmin.ayiti_touris.AdaptersOnline.AdapterEndroit;
 import com.example.labadmin.ayiti_touris.ModelsOnline.BackendSettings;
 import com.example.labadmin.ayiti_touris.ModelsOnline.Endroit;
 import com.example.labadmin.ayiti_touris.R;
+import com.example.labadmin.ayiti_touris.utils.NetWork;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
@@ -35,9 +37,10 @@ public class Activity_ListeClub extends AppCompatActivity {
 
     public ProgressDialog barProgressDialog, proDialog,ProgressDialog,loadweb;
     ArrayList<Endroit> ListEndroit;
-    ListView lvclub;
+    ListView lvendroit;
     AdapterEndroit adapterendroit;
     private MaterialSearchView searchView;
+    private SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,8 @@ public class Activity_ListeClub extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        setTitle("Liste Club");
+        setTitle("Club");
+        toolbar.setTitleTextColor(android.graphics.Color.WHITE);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -57,20 +61,11 @@ public class Activity_ListeClub extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // what do you want here
                 onBackPressed();
-                }
+
+            }
         });
-
-
-        /**
-         * Methode populate data dans le listeView
-         */
-        fetchListeClub();
-
-/**
- * setup search in tools bar
- *
- */
 
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setVoiceSearch(false);
@@ -80,14 +75,14 @@ public class Activity_ListeClub extends AppCompatActivity {
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //Toast.makeText(Activity_ListeClub.this, "Query: " + query, Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_ListeClub.this, "Query: " + query, Toast.LENGTH_SHORT).show();
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String query) {
-                //ListEndroit.clear();
-                fetchSearchEndroit(query);
+                ListEndroit.clear();
+                fetchSearchClub(query);
                 return true;
             }
         });
@@ -95,59 +90,35 @@ public class Activity_ListeClub extends AppCompatActivity {
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
-                //Do some magic
+                ListEndroit.clear();
                 fetchListeClub();
-                //ListEndroit.clear();
             }
 
             @Override
             public void onSearchViewClosed() {
-                //Do some magic
+                ListEndroit.clear();
                 fetchListeClub();
-                //ListEndroit.clear();
             }
         });
 
         //fin search
+        fetchListeClub();
 
-
+        Refresh();
         //Initialisation API
 
         Backendless.initApp(getApplicationContext(), BackendSettings.APPLICATION_ID, BackendSettings.ANDROID_SECRET_KEY);
 
-        lvclub = (ListView) findViewById(R.id.lvendroit);
+        lvendroit = (ListView) findViewById(R.id.lvendroit);
         ListEndroit = new ArrayList<>();
         adapterendroit = new AdapterEndroit(this, ListEndroit);
 
         // Setup Adapter
-        lvclub.setAdapter(adapterendroit);
-        lvclub.setTextFilterEnabled(true);
-
-       /* lvendroit.setOnScrollListener(new EndlessScrollListener() {
-            @Override
-            public boolean onLoadMore(int page, int totalItemsCount) {
-                Long sinceId = getOldestTweetId();
-                client.getOlderHomeTimeline(new TwitterClient.TimelineResponseHandler() {
-                    @Override
-                    public void onSuccess(List<Tweet> tweets) {
-                        adapterendroit.addAll(tweets.isEmpty() ? tweets : tweets.subList(1, tweets.size()));
-                    }
-
-                    @Override
-                    public void onFailure(Throwable error) {
-                        logError(error);
-                    }
-                }, sinceId);
-                return true;
-            }
-        });*/
+        lvendroit.setAdapter(adapterendroit);
+        lvendroit.setTextFilterEnabled(true);
 
 
-
-
-        // }
-
-        lvclub.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvendroit.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -165,54 +136,53 @@ public class Activity_ListeClub extends AppCompatActivity {
 
     }
 
+    /**
+     * Methode pour lister les hotel
+     */
 
     public void fetchListeClub(){
-      //  ListEndroit.clear();
-        IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
-        //IDataStore<Map> imageStorage = Backendless.Data.of( "images" );
-        DataQueryBuilder queryBuilder = DataQueryBuilder.create();
 
-        Intent intent = getIntent();
-
-        //  final String value = intent.getStringExtra("key");
-
-        queryBuilder.setWhereClause("id_categorie='"+BackendSettings.CLUB_ID+"'");
-
-
-        showProgress();
-
-        endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
-
+        boolean connexion= NetWork.checkConnexion(this);
+        if(!connexion)
         {
 
+            Toast.makeText(this,"impossible de continuer, verifier la connexion internet", Toast.LENGTH_LONG).show();
+        } else {
 
-            @Override
-            public void handleResponse(List<Map> response) {
+            IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
+            //IDataStore<Map> imageStorage = Backendless.Data.of( "images" );
+            DataQueryBuilder queryBuilder = DataQueryBuilder.create();
 
-                adapterendroit.addAll(Endroit.fromListMap(response));
-                adapterendroit.notifyDataSetChanged();
-                // Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                if (loadweb != null) {
-                    loadweb.dismiss();
+            queryBuilder.setWhereClause("id_categorie='" + BackendSettings.CLUB_ID + "'");
+            showProgress();
+
+            endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
+
+            {
+
+                @Override
+                public void handleResponse(List<Map> response) {
+
+                        loadweb.dismiss();
+
+                    adapterendroit.addAll(Endroit.fromListMap(response));
+                    adapterendroit.notifyDataSetChanged();
+                    // Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                   Log.d("DEBUG", lvendroit.toString());
                 }
 
-                Log.d("DEBUG", lvclub.toString());
-            }
+                @Override
+                public void handleFault(BackendlessFault fault) {
 
-            @Override
-            public void handleFault(BackendlessFault fault) {
-
-                Toast.makeText(getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
+                    Toast.makeText(getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
 
 
-    private void fetchSearchEndroit(String query) {
-
+    private void fetchSearchClub(String query) {
         //  String whereClause = "categorie=Viandes";
         IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
 
@@ -222,7 +192,7 @@ public class Activity_ListeClub extends AppCompatActivity {
         queryBuilder.setWhereClause("nom like'" + query + "%'");
         queryBuilder.addSortBy("nom");
 
-        //showProgress();
+       // showProgress();
 
         endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
 
@@ -230,13 +200,11 @@ public class Activity_ListeClub extends AppCompatActivity {
             @Override
             public void handleResponse(List<Map> response) {
 
+                loadweb.dismiss();
                 adapterendroit.addAll(Endroit.fromListMap(response));
                 adapterendroit.notifyDataSetChanged();
-               // if (loadweb!=null)
-               // {
-               //     loadweb.dismiss();
-                //}
-                Log.d("DEBUG", lvclub.toString());
+
+                Log.d("DEBUG", lvendroit.toString());
                 Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
 
             }
@@ -254,7 +222,30 @@ public class Activity_ListeClub extends AppCompatActivity {
 
 
 
+    public void Refresh()
+    {
 
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+
+                fetchListeClub();
+                //fetchHardcodedData();
+
+                //signal refresh has finished:
+                swipeContainer.setRefreshing(false);
+            }
+
+
+        });
+
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -330,12 +321,5 @@ public class Activity_ListeClub extends AppCompatActivity {
     }
 
 
-    private void setUpClickListener() {
 
-    }
-
-    private void setToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-    }
 }
