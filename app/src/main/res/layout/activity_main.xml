@@ -29,7 +29,8 @@
                android:layout_marginLeft="17dp"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:src="@drawable/menu_resto"/>
+               android:elevation="20dp"
+               android:background="@drawable/menu_resto"/>
 
            <ImageView
                android:id="@+id/ivhotels"

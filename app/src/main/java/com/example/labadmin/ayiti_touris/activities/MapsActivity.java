@@ -40,6 +40,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.example.labadmin.ayiti_touris.ModelsOnline.Endroit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ProgressDialog progress;
     private List<LatLng> latLngList;
 
+    String Longitude,Latitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +66,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         latLngList = new ArrayList<LatLng>();
 
 
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        Longitude = extras.getString("Longitude");
+       Latitude = extras.getString("Latitude");
+
+
+
         progress = new ProgressDialog(MapsActivity.this);
         progress.setMessage("Loading...");
 
-
+        Toast.makeText(MapsActivity.this, ""+Longitude +"--"+ Latitude, Toast.LENGTH_SHORT).show();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -209,6 +218,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     void updatemap(double lat, double lng){
 
+
+//Endroit  endroit=new Endroit();
         LatLng latLng = new LatLng(lat, lng);
 
         if(latLngList.size() > 0){
@@ -223,9 +234,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(sydney).title("Your Position"));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 12.0f));
 
-
         String directionApiPath = Helper.getUrl(String.valueOf(lat), String.valueOf(lng),
-                String.valueOf(18.514564), String.valueOf(-72.290057));
+                String.valueOf(18.514564), String.valueOf(72.290057));
 
         getDirectionFromDirectionApiServer(directionApiPath);
     }
@@ -243,7 +253,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 DirectionObject.class,
                 createRequestSuccessListener(),
                 createRequestErrorListener());
-        serverRequest.setRetryPolicy(new DefaultRetryPolicy(
+                serverRequest.setRetryPolicy(new DefaultRetryPolicy(
                 Helper.MY_SOCKET_TIMEOUT_MS,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -314,10 +324,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .build();
         map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-        LatLng destination = new LatLng(18.514564,-72.290057);
+        //LatLng destination = new LatLng(18.514564,-72.290057);
+        LatLng destination = new LatLng(Double.parseDouble(Latitude),Double.parseDouble(Longitude));
         mMap.addMarker(new MarkerOptions().position(destination).title("Destination"));
+       // mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(Latitude),Double.parseDouble(Longitude)), 12.0f));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(18.514564,-72.290057), 12.0f));
-
 
         progress.dismiss();
 

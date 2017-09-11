@@ -19,6 +19,12 @@
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/darkPrimaryColor</item>
         <item name="colorAccent">@color/accentColor</item>
+        <!--<item name="android:textColorPrimary">@color/primary_text</item>-->
+        <item name="colorControlNormal">@color/primary_text</item>
+        <item name="colorControlActivated">@color/TextMenu</item>
+        <item name="colorControlHighlight">@color/primary_text</item>
+        <item name="actionMenuTextColor">@color/primary_text</item>
+
     </style>
 
     <style name="AppTheme.TranslucentSystemBars" parent="AppTheme">

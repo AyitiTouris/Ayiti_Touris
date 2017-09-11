@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -120,8 +122,17 @@
             android:name=".activities.MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".utils.SlideImage" />
+        <activity android:name=".ActivitiesOnline.Activity_ListeHotel" />
+        <activity android:name=".ActivitiesOnline.Activity_DetailsEndroit" />
         <activity android:name=".activities.SignInActivity" />
-        <activity android:name=".activities.SignUpActivity"></activity>
+        <activity android:name=".activities.SignUpActivity" />
+        <activity android:name=".ActivitiesOnline.RegistrationActivity" />
+        <activity android:name=".ActivitiesOnline.LoginActivity" />
+        <activity android:name=".ActivitiesOnline.Activity_ListeFavorite" />
+        <activity android:name=".ActivitiesOnline.Activity_ListeClub" />
+        <activity android:name=".ActivitiesOnline.Activity_ListeResto" />
+        <activity android:name=".ActivitiesOnline.Activity_ListePlage" />
+        <activity android:name=".ActivitiesOnline.Activity_ListeMonument"></activity>
     </application>
 
 </manifest>
