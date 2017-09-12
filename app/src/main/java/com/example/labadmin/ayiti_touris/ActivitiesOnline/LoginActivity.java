@@ -277,7 +277,7 @@ public class LoginActivity extends Activity {
             public void handleResponse( BackendlessUser loggedInUser )
             {
                 super.handleResponse( loggedInUser );
-                Toast.makeText( LoginActivity.this, "Vous etre Connectez", Toast.LENGTH_LONG ).show();
+                Toast.makeText( LoginActivity.this, "Vous vener de Connecter", Toast.LENGTH_LONG ).show();
                 //Toast.makeText( LoginActivity.this, String.format( getString( R.string.info_logged_in_user ), loggedInUser.getProperties() ), Toast.LENGTH_LONG ).show();
                 idUser=loggedInUser.getObjectId();
                // String nom = BackendlessUser.
