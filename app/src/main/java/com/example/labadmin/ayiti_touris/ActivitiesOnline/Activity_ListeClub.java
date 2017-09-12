@@ -205,7 +205,7 @@ public class Activity_ListeClub extends AppCompatActivity {
                 adapterendroit.notifyDataSetChanged();
 
                 Log.d("DEBUG", lvendroit.toString());
-                Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
 
             }
 
@@ -231,6 +231,7 @@ public class Activity_ListeClub extends AppCompatActivity {
             @Override
             public void onRefresh() {
 
+                ListEndroit.clear();
                 fetchListeClub();
                 //fetchHardcodedData();
 

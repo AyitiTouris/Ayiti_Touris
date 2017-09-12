@@ -31,8 +31,6 @@ dependencies {
 
 
 
-
-
     compile group: 'com.backendless', name: 'backendless', version: '4.0.0-beta3'
     compile 'com.makeramen:roundedimageview:2.2.0'
     compile 'com.makeramen:roundedimageview:2.2.0'
@@ -53,5 +51,6 @@ dependencies {
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.miguelcatalan:materialsearchview:1.4.0'
     compile 'com.airbnb.android:lottie:2.2.0'
+    compile 'jp.wasabeef:picasso-transformations:2.1.0'
     testCompile 'junit:junit:4.12'
 }

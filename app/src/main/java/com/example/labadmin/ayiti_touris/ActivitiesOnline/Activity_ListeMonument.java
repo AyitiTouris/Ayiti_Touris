@@ -157,7 +157,7 @@ public class Activity_ListeMonument extends AppCompatActivity {
             DataQueryBuilder queryBuilder = DataQueryBuilder.create();
 
             queryBuilder.setWhereClause("id_categorie='" + BackendSettings.MONUMENT_ID + "'");
-            //showProgress();
+            showProgress();
 
             endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
 
@@ -166,12 +166,10 @@ public class Activity_ListeMonument extends AppCompatActivity {
                 @Override
                 public void handleResponse(List<Map> response) {
 
+                    loadweb.dismiss();
                     adapterendroit.addAll(Endroit.fromListMap(response));
                     adapterendroit.notifyDataSetChanged();
                     // Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                    if (loadweb != null) {
-                        loadweb.dismiss();
-                    }
 
                     Log.d("DEBUG", lvendroit.toString());
                 }
@@ -204,7 +202,7 @@ public class Activity_ListeMonument extends AppCompatActivity {
             queryBuilder.setWhereClause("nom like'" + query + "%'");
             queryBuilder.addSortBy("nom");
 
-            showProgress();
+            //showProgress();
 
             endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
 
@@ -214,11 +212,9 @@ public class Activity_ListeMonument extends AppCompatActivity {
 
                     adapterendroit.addAll(Endroit.fromListMap(response));
                     adapterendroit.notifyDataSetChanged();
-                    if (loadweb != null) {
-                        loadweb.dismiss();
-                    }
+
                     Log.d("DEBUG", lvendroit.toString());
-                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -241,6 +237,7 @@ public class Activity_ListeMonument extends AppCompatActivity {
 
             @Override
             public void onRefresh() {
+                ListEndroit.clear();
                fetchListeMonument();
                 //fetchHardcodedData();
 

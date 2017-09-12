@@ -18,7 +18,7 @@ import com.backendless.persistence.QueryOptions;
 import com.example.labadmin.ayiti_touris.ModelsOnline.Endroit;
 import com.example.labadmin.ayiti_touris.R;
 import com.squareup.picasso.Picasso;
-
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -104,9 +104,9 @@ public class AdapterEndroit extends ArrayAdapter<Endroit> {
 
         Picasso.with(getContext())
                 .load(endroit.getImage1Endroit())
-                //.transform(new RoundedCornersTransformation(20, 20))
-               // .placeholder(R.drawable.placeholder2)
-                .resize(220, 130).into(viewHolder.image1Endroit);
+                .transform(new RoundedCornersTransformation(10, 10))
+                .placeholder(R.mipmap.placeholder3)
+                .resize(220, 145).into(viewHolder.image1Endroit);
 
       /*  Glide.with(viewHolder.image1Hotel.getContext())
                 .load(hotel.getImage1Hotel())

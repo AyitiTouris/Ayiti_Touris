@@ -60,7 +60,7 @@ public class Activity_ListeHotel extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-            setTitle("Liste Hotel");
+            setTitle("Hotel");
             toolbar.setTitleTextColor(android.graphics.Color.WHITE);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -238,7 +238,7 @@ public class Activity_ListeHotel extends AppCompatActivity {
                         loadweb.dismiss();
                     }
                     Log.d("DEBUG", lvendroit.toString());
-                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -264,6 +264,7 @@ public class Activity_ListeHotel extends AppCompatActivity {
             @Override
             public void onRefresh() {
 
+                ListEndroit.clear();
                 fetchListeHotel();
                 //fetchHardcodedData();
 

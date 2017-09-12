@@ -220,7 +220,7 @@ public class Activity_ListeResto extends AppCompatActivity {
                     adapterendroit.notifyDataSetChanged();
 
                     Log.d("DEBUG", lvclub.toString());
-                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -248,7 +248,7 @@ public class Activity_ListeResto extends AppCompatActivity {
                 //adapterendroit.clear();
                 //  ListEndroit.clear();
                 // adapterendroit.notifyDataSetChanged();
-
+                ListEndroit.clear();
                 fetchListeResto();
                 //fetchHardcodedData();
 

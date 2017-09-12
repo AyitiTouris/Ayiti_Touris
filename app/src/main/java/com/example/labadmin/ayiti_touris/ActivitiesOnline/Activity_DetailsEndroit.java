@@ -228,7 +228,7 @@ public class Activity_DetailsEndroit extends AppCompatActivity {
                     }
                 });
             }
-        }, 5000, 5000);
+        }, 3000, 3000);
 
         btnmap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -362,7 +362,7 @@ public class Activity_DetailsEndroit extends AppCompatActivity {
     }
 
 
-    
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -27,7 +27,7 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent">
 
-            <com.makeramen.roundedimageview.RoundedImageView
+           <!-- <com.makeramen.roundedimageview.RoundedImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/ivimage1Endroit"
                 android:layout_width="wrap_content"
@@ -35,13 +35,21 @@
                 android:scaleType="fitCenter"
                 app:riv_corner_radius="5dip"
                 app:riv_mutate_background="true"
-                app:riv_tile_mode="repeat"
+                app:riv_tile_mode="clamp"
                 app:riv_oval="false"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginRight="16dp"/>
-
+                android:layout_marginRight="16dp"/>-->
+       <ImageView
+           android:id="@+id/ivimage1Endroit"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentTop="true"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentStart="true"
+           android:layout_marginRight="16dp"
+           android:contentDescription="favorites" />
 
             <TextView
                 android:id="@+id/tvnomEndroit"

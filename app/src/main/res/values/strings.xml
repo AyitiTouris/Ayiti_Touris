@@ -48,6 +48,8 @@
     <string name="info_registered_success">Registered successfully</string>
     <string name="info_logged_in">Logged in. ObjectId: %s</string>
 
+    <string name="info_logged_in_user">connecter au nom de : %s</string>
+
     <!-- warnings -->
     <string name="warning_name_empty">Name cannot be empty</string>
     <string name="warning_name_lowercase">Name should start from an uppercase letter</string>
@@ -76,9 +78,9 @@
     <string name="button_login_twitter">Login with Twitter</string>
 
     <!-- texts -->
-    <string name="register_prompt">Do not have an account? Register now</string>
+    <string name="register_prompt">pas de compte? Enregistrer Maintenant</string>
     <string name="divider_or">OR</string>
-    <string name="register_link">Register</string>
+    <string name="register_link"> Enregistrer </string>
 
     <string name="plustard">Connecter pour jouir des privileges, Plus Tard</string>
     <string name="link"> Plus Tard</string>

@@ -190,7 +190,7 @@ public class Activity_ListeFavorite extends AppCompatActivity {
                     //     loadweb.dismiss();
                     //}
                     Log.d("DEBUG", lvendroit.toString());
-                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -214,6 +214,7 @@ public class Activity_ListeFavorite extends AppCompatActivity {
 
             @Override
             public void onRefresh() {
+                ListEndroit.clear();
                 fetchListeFavorite();
                 swipeContainer.setRefreshing(false);
             }
