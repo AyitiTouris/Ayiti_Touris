@@ -5,7 +5,7 @@ android {
     buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "com.example.labadmin.ayiti_touris"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -53,5 +53,6 @@ dependencies {
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.miguelcatalan:materialsearchview:1.4.0'
     compile 'com.airbnb.android:lottie:2.2.0'
+    compile 'com.github.thunderrise:android-TNRAnimationHelper:-SNAPSHOT'
     testCompile 'junit:junit:4.12'
 }
