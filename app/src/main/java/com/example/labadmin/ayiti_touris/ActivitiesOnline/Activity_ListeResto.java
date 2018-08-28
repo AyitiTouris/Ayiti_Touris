@@ -48,7 +48,7 @@ public class Activity_ListeResto extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        setTitle("restaurant");
+        setTitle("Restaurants");
         toolbar.setTitleTextColor(android.graphics.Color.WHITE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

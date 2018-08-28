@@ -4,9 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-/**
- * Created by labadmin on 8/26/17.
- */
+
 
 public class Helper {
     private static final String DIRECTION_API = "https://maps.googleapis.com/maps/api/directions/json?origin=";

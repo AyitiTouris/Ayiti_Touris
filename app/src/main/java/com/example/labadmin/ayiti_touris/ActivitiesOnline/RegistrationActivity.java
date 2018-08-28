@@ -24,7 +24,7 @@ import com.example.labadmin.ayiti_touris.ModelsOnline.Validator;
 import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.activities.MainActivity;
 
-public class RegistrationActivity extends Activity {
+public class    RegistrationActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

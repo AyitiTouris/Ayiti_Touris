@@ -60,7 +60,7 @@ public class Activity_ListeHotel extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-            setTitle("Liste Hotel");
+            setTitle("Hotels");
             toolbar.setTitleTextColor(android.graphics.Color.WHITE);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
