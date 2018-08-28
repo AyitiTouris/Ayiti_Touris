@@ -10,11 +10,11 @@
 
     <ImageView
         android:id="@+id/ivSignIn"
-        android:layout_width="100dp"
+        android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:scaleType="fitCenter"
-        android:src="@mipmap/ic_launcherlogo"
+        android:src="@drawable/touriss"
         tools:ignore="ContentDescription,UnknownIdInLayout"
         android:layout_marginTop="5dp" />
 

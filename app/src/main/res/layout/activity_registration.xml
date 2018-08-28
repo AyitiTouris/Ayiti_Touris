@@ -18,11 +18,11 @@
 
             <ImageView
                 android:id="@+id/logo"
-                android:layout_width="100dp"
+                android:layout_width="200dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="0.2"
-                android:src="@mipmap/ayiti"
+                android:src="@drawable/touriss"
                 android:textColor="#fff"
                 android:textSize="25sp" />
 
@@ -36,6 +36,7 @@
 
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
+                android:layout_weight="0.21"
                 android:background="@drawable/button_background2"
                 android:elevation="4dp"
                 android:gravity="center_horizontal"
@@ -43,16 +44,15 @@
                 android:paddingBottom="10dp"
                 android:paddingLeft="2dp"
                 android:paddingRight="2dp"
-                android:paddingTop="8dp"
-                android:layout_weight="0.21">
+                android:paddingTop="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top|center_horizontal"
                     android:text="Enregistrer"
-                    android:textStyle="bold"
-                    android:textColor="@color/facebook_brand_color" />
+                    android:textColor="@color/facebook_brand_color"
+                    android:textStyle="bold" />
 
 
                 <EditText
@@ -90,7 +90,6 @@
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:theme="@style/EditTextStyle2" />
-
 
 
                 <EditText
@@ -144,14 +143,14 @@
                     android:textColor="@color/facebook_brand_color" />
 
                 <TextView
+                    android:id="@+id/registerPromptText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/register_prompt"
-                    android:id="@+id/registerPromptText"
-                    android:textColor="@android:color/background_dark"
-                    android:paddingTop="@dimen/view_vertical_margin"
-                    android:paddingBottom="@dimen/view_vertical_margin"
                     android:layout_marginTop="8dp"
+                    android:paddingBottom="@dimen/view_vertical_margin"
+                    android:paddingTop="@dimen/view_vertical_margin"
+                    android:text="@string/register_prompt"
+                    android:textColor="@android:color/background_dark"
                     android:textSize="14sp"
 
                     />

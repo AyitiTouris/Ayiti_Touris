@@ -49,7 +49,7 @@ public class Activity_ListeClub extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        setTitle("Club");
+        setTitle("Clubs");
         toolbar.setTitleTextColor(android.graphics.Color.WHITE);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
