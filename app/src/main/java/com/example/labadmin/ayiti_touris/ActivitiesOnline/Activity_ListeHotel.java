@@ -170,11 +170,7 @@ public class Activity_ListeHotel extends AppCompatActivity {
             IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
             DataQueryBuilder queryBuilder = DataQueryBuilder.create();
 
-            Intent intent = getIntent();
-
-            //  final String value = intent.getStringExtra("key");
-
-            queryBuilder.setWhereClause("id_categorie='" + BackendSettings.HOTEL_ID + "'");
+            queryBuilder.setWhereClause("id_categorie='" + BackendSettings.HOTEL_ID +"'");
             showProgress();
             //progressBar.setVisibility(View.VISIBLE);
 

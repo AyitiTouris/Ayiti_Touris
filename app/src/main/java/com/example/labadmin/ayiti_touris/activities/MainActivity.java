@@ -3,143 +3,92 @@ package com.example.labadmin.ayiti_touris.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import com.example.labadmin.ayiti_touris.ActivitiesOnline.Activity_ListeClub;
-import com.example.labadmin.ayiti_touris.ActivitiesOnline.Activity_ListeHotel;
-import com.example.labadmin.ayiti_touris.ActivitiesOnline.Activity_ListeMonument;
-import com.example.labadmin.ayiti_touris.ActivitiesOnline.Activity_ListePlage;
-import com.example.labadmin.ayiti_touris.ActivitiesOnline.Activity_ListeResto;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 import com.example.labadmin.ayiti_touris.R;
+import com.example.labadmin.ayiti_touris.adapters.RecyclerViewAdapter;
 import com.example.labadmin.ayiti_touris.utils.ListesEvent;
 
 /*import com.Backendless.Backendless;*/
 
-public class MainActivity extends AppCompatActivity {
-    String Hotel="Hotel",Club="Club",Monument="Monument",Restaurant="Restaurant";
+public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.ItemListener {
+
+    //Intent intent;
+    String itemDep;
+    RecyclerView recyclerView;
+    ArrayList<DataModel> arrayList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-        /*Backendless.initApp(this, APPLICATION_ID, API_KEY);*/
-
-        final Animation shake = AnimationUtils.loadAnimation(this, R.anim.milkshake);
-        final Animation shake2 = AnimationUtils.loadAnimation(this, R.anim.shake2);
-
-
-        ImageView btnliste =(ImageView)findViewById(R.id.ivhotels);
-        btnliste.startAnimation(shake);
-        //shake.setInterpolator(new BounceInterpolator());
-        btnliste.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,Activity_ListeHotel.class);
-                startActivity(intent);
-            }
-        });
-
-        ImageView btnMonument =(ImageView)findViewById(R.id.ivmonuments);
-        btnMonument.setAnimation(shake);
-        btnMonument.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,Activity_ListeMonument.class);
-                startActivity(intent);
-            }
-        });
-
-        ImageView btnRestaurant =(ImageView)findViewById(R.id.ivrestorants);
-        btnRestaurant.setAnimation(shake);
-        btnRestaurant.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,Activity_ListeResto.class);
-                startActivity(intent);
-            }
-        });
-        ImageView btnPlage =(ImageView)findViewById(R.id.ivplages);
-        btnPlage.setAnimation(shake);
-        btnPlage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,Activity_ListePlage.class);
-                startActivity(intent);
-            }
-        });
-        ImageView btnEvenement =(ImageView)findViewById(R.id.ivevenements);
-        btnEvenement.setAnimation(shake);
-        btnEvenement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,ListesEvent.class);
-                startActivity(intent);
-            }
-        });
-        ImageView btnClub =(ImageView)findViewById(R.id.ivclubs);
-        btnClub.setAnimation(shake);
-        btnClub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,Activity_ListeClub.class);
-                startActivity(intent);
-               // Intent intent=new Intent(MainActivity.this,LoginActivity.class);
-               // startActivity(intent);
-            }
-        });
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        arrayList = new ArrayList<>();
+        arrayList.add(new DataModel("OUEST", R.drawable.ouest, "#ffffffff","..."));
+        arrayList.add(new DataModel("NORD", R.drawable.nord, "#ffffffff","..."));
+        arrayList.add(new DataModel("SUD", R.drawable.sud, "#ffffffff","..."));
+        arrayList.add(new DataModel("NORD-EST", R.drawable.nord_est, "#4BAA50","..."));
+        arrayList.add(new DataModel("ARTIBONITE", R.drawable.artibonite, "#F94336","..."));
+        arrayList.add(new DataModel("NIPPES", R.drawable.nippes, "#0A9B88","..."));
+        arrayList.add(new DataModel("NORD-OUEST", R.drawable.nord_ouest, "#0A9B88","..."));
+        arrayList.add(new DataModel("SUD-EST", R.drawable.sud_est, "#0A9B88","..."));
+        arrayList.add(new DataModel("CENTRE", R.drawable.centre, "#0A9B88","..."));
+        arrayList.add(new DataModel("GRAND-ANSE", R.drawable.grand_anse, "#0A9B88","..."));
 
 
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, arrayList, this);
+        recyclerView.setAdapter(adapter);
 
+
+        /**
+         AutoFitGridLayoutManager that auto fits the cells by the column width defined.
+         **/
+
+        AutoFitGridLayoutManager layoutManager = new AutoFitGridLayoutManager(this, 300);
+        recyclerView.setLayoutManager(layoutManager);
+
+
+        /**
+         Simple GridLayoutManager that spans two columns
+         **/
+        /*GridLayoutManager manager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(manager);*/
+    }
+
+  /*  private void SentDep(String itmd)
+
+    {
+        Bundle bundle = new Bundle();
+        bundle.putString("departement", itmd);
+        intent.putExtras(bundle);
+    }*/
+
+    @Override
+    public void onItemClick(DataModel item) {
+         String itemDepat=item.text;
+        Intent intent = new Intent(MainActivity.this, ActivityFragmentListes.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("departement", itemDepat);
+        intent.putExtras(bundle);
+        startActivity(intent);
 
     }
 
-
-
-   /* protected void checkNetworkConnectivity() {
-        // TODO Auto-generated method stub
-        ConnectivityManager connMgr = (ConnectivityManager)
-                this.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        final android.net.NetworkInfo wifi =
-                connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-
-        final android.net.NetworkInfo mobile =
-                connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-
-        if( wifi.isAvailable() || mobile.isAvailable()){
-
-
-
-
-        }
-
-        else{
-            Intent intent=new Intent(MainActivity.this,ListesHotel.class);
-            //intent.putExtra("Hotel",Hotel);
-            startActivity(intent);
-            Toast.makeText(this, "No Network Available" , Toast.LENGTH_LONG).show();
-        }
-    }*/
-
-   /*// Step1 : create the  RotateAnimation object
-        RotateAnimation anim = new RotateAnimation(0f, 350f, 80f, 80f);
-        // Step 2:  Set the Animation properties
-        anim.setInterpolator(new LinearInterpolator());
-        anim.setRepeatCount(Animation.INFINITE);
-        anim.setDuration(700);
-
-        // Step 3: Start animating the image
-        btnMonument.startAnimation(anim);*/
-   
-   /*ShakeAnimation.create().with(btnClub)
-                .setDuration(2000)
-                .setRepeatMode(ShakeAnimation.RESTART)
-                .setRepeatCount(ShakeAnimation.INFINITE)
-                .start();*/
 }
 
-//}
+

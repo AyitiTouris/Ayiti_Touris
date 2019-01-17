@@ -82,7 +82,7 @@ public class AdapterEndroit extends ArrayAdapter<Endroit> {
         // into the template view.
        //Endroit endroit1=listgetItem(position);
         viewHolder.nomEndroit.setText(endroit.getNomEndroit());
-        viewHolder.adresseEndroit.setText(endroit.getAdresseEndroit());
+        viewHolder.adresseEndroit.setText(endroit.getVille());
         viewHolder.telephoneEndroit.setText(endroit.getTelephoneEndroit());
        // viewHolder.image1Endroit.setText(endroit.getImage1Endroit());
             viewHolder.favoriteImg.setVisibility(View.GONE);

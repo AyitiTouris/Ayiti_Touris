@@ -23,8 +23,17 @@ public class BackendSettings
   public static final String PLAGE_ID="C7DF1BC2-1813-4105-FF13-6BACA046A700";
   public static final String CLUB_ID="B60B980E-D5F7-3554-FF31-22A25ACC3000";
   public static final String MONUMENT_ID="8BA8DFEE-08FB-3128-FFDF-69E1F8EFEF00";
-
-
+    // TABLE DEPARTEMENT ID
+  public static final String SUD_EST_ID ="52F70E25-D454-3398-FFBD-38CE3C73C200";
+  public static final String SUD_ID ="C364B333-F100-4EBB-FFCA-6288C4D83A00";
+  public static final String OUEST_ID ="70EF0032-78FE-23C9-FF30-03702BBC6000";
+  public static final String NORD_OUEST_ID ="93F3BC0E-AEA2-172F-FFA1-5D1F0617C600";
+  public static final String NORD_EST_ID ="C923C2B5-8F0A-E465-FF76-7327B6204200";
+  public static final String NORD_ID ="062E64B0-7F27-30B8-FFE4-0499FD79DE00";
+  public static final String NIPPES_ID ="8B57EE67-7E87-225F-FF38-372FD43C2A00";
+  public static final String GRAND_ANSE_ID ="C1BD6617-24C8-C2F6-FF5C-A5906461BB00";
+  public static final String CENTRE_ID ="63904B0F-CCC4-3CFD-FF6D-D64390646A00";
+  public static final String ARTIBONITE_ID ="95CCDCFE-C189-A244-FFE6-6858B5159A00";
 
 
 }
