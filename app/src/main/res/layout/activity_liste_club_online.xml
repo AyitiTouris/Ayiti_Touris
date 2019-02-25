@@ -93,7 +93,6 @@
         android:id="@+id/lvendroit"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:divider="@null"
         android:padding="3dp"
         android:scrollbars="vertical"

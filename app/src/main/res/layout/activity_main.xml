@@ -1,86 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
     tools:context="com.example.labadmin.ayiti_touris.activities.MainActivity">
-   <RelativeLayout
-       android:padding="5dp"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:id="@+id/relativeLayout"
-       android:layout_centerVertical="true"
-       android:layout_alignParentLeft="true"
-       android:layout_alignParentStart="true">
-
-       <LinearLayout
-           android:id="@+id/ln_ligne1"
-           android:padding="15dp"
-           android:layout_width="match_parent"
-           android:layout_centerHorizontal="true"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal">
-
-           <ImageView
-               android:id="@+id/ivrestorants"
-               android:layout_marginLeft="17dp"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:elevation="20dp"
-               android:background="@drawable/menu_resto"/>
-
-           <ImageView
-               android:id="@+id/ivhotels"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="25dp"
-               android:src="@drawable/hotel"/>
 
 
-           <ImageView
-               android:id="@+id/ivplages"
-               android:layout_marginLeft="25dp"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:src="@drawable/menu_beach"/>
-       </LinearLayout>
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-       <LinearLayout
-           android:id="@+id/ln_ligne2"
-           android:layout_below="@+id/ln_ligne1"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:padding="15dp"
-           android:orientation="horizontal"
-           >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
 
 
-           <ImageView
-               android:id="@+id/ivevenements"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="17dp"
-               android:src="@drawable/calendar" />
-
-
-           <ImageView
-               android:id="@+id/ivmonuments"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="25dp"
-               android:src="@drawable/mawon128"/>
-
-
-           <ImageView
-               android:id="@+id/ivclubs"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="25dp"
-               android:src="@drawable/clubsd" />
-
-       </LinearLayout>
- </RelativeLayout>
-</RelativeLayout>

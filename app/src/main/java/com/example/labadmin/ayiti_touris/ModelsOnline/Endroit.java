@@ -29,6 +29,16 @@ public class Endroit implements Serializable {
     private  String id_lieu_touristique;
     private String ratingBar;
 
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    private String ville;
+
     public String getRatingBar() {
         return ratingBar;
     }
@@ -165,6 +175,7 @@ public class Endroit implements Serializable {
         for(int i = 0; i < map.size(); i++) {
             Endroit endroit = new Endroit();
             endroit.setNomEndroit((String) map.get(i).get("nom"));
+            endroit.setVille((String) map.get(i).get("Ville"));
             endroit.setAdresseEndroit((String) map.get(i).get("adresse"));
             endroit.setImage1Endroit((String) map.get(i).get("image1"));
             endroit.setImage2Endroit((String) map.get(i).get("image2"));

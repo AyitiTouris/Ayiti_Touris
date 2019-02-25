@@ -2,10 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.labadmin.ayiti_touris">
 
-    <uses-sdk
-        android:minSdkVersion="16"
-        android:targetSdkVersion="21" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -40,63 +36,8 @@
         </activity>
         <activity android:name=".activities.MainActivity" />
         <activity
-            android:name=".utils.ListesHotel"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".utils.ListesResto"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".utils.ListesMonument"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".utils.ListesClub"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".utils.ListesPlage"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".utils.ListesEvent"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activities.DetailsActivity"
-            android:parentActivityName=".utils.ListesHotel"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.labadmin.ayiti_touris.utils.ListesHotel" />
-        </activity>
-        <activity
-            android:name=".activities.DetailsRestaurantActivity"
-            android:parentActivityName=".utils.ListesResto"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.labadmin.ayiti_touris.utils.ListesResto" />
-        </activity>
-        <activity
-            android:name=".activities.DetailsMonumentActivity"
-            android:parentActivityName=".utils.ListesMonument"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.labadmin.ayiti_touris.utils.ListesMonument" />
-        </activity>
-        <activity
-            android:name=".activities.DetailsClubActivity"
-            android:parentActivityName=".utils.ListesClub"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.labadmin.ayiti_touris.utils.ListesClub" />
-        </activity>
-        <activity
-            android:name=".activities.DetailsPlageActivity"
-            android:parentActivityName=".utils.ListesPlage"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.labadmin.ayiti_touris.utils.ListesPlage" />
-        </activity>
         <activity
             android:name=".activities.DetailsEvenementActivity"
             android:parentActivityName=".utils.ListesEvent"
@@ -121,7 +62,6 @@
         <activity
             android:name=".activities.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".utils.SlideImage" />
         <activity android:name=".ActivitiesOnline.Activity_ListeHotel" />
         <activity android:name=".ActivitiesOnline.Activity_DetailsEndroit" />
         <activity android:name=".activities.SignInActivity" />
@@ -132,7 +72,8 @@
         <activity android:name=".ActivitiesOnline.Activity_ListeClub" />
         <activity android:name=".ActivitiesOnline.Activity_ListeResto" />
         <activity android:name=".ActivitiesOnline.Activity_ListePlage" />
-        <activity android:name=".ActivitiesOnline.Activity_ListeMonument"></activity>
+        <activity android:name=".ActivitiesOnline.Activity_ListeMonument" />
+        <activity android:name=".activities.ActivityFragmentListes"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_hotel"
+        android:icon="@drawable/ic_hotel"
+        android:title="@string/title_hotel"/>
+
+    <item
+        android:id="@+id/navigation_restaurant"
+        android:icon="@drawable/ic_restaurent"
+        android:title="@string/title_retaurant"/>
+
+    <item
+        android:id="@+id/navigation_club"
+        android:icon="@drawable/ic_club"
+        android:title="@string/title_club"/>
+
+    <item
+        android:id="@+id/navigation_monument"
+        android:icon="@drawable/ic_monument"
+        android:title="@string/title_Monument"/>
+
+    <item
+        android:id="@+id/navigation_plage"
+        android:icon="@drawable/ic_plage"
+        android:title="@string/title_plages"/>
+</menu>

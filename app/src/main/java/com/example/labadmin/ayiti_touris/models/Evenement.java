@@ -20,7 +20,7 @@ public class Evenement {
 
     public Evenement(String name) {
         this.name = name;
-        this.idDrawable = getRandomGirlDrawable();
+       // this.idDrawable = getRandomGirlDrawable();
     }
 
     public String getName() {
@@ -34,7 +34,7 @@ public class Evenement {
     /**
      Asigner des images Aleatoire
      */
-    private int getRandomGirlDrawable() {
+  /*  private int getRandomGirlDrawable() {
         Random rnd = new Random();
         switch (rnd.nextInt(6)) {
             default:
@@ -50,5 +50,5 @@ public class Evenement {
                 return R.drawable.hot6;
 
         }
-    }
+    }*/
 }
