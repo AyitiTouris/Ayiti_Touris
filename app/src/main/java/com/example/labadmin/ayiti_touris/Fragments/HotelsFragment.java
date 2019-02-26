@@ -2,27 +2,39 @@ package com.example.labadmin.ayiti_touris.Fragments;
 
 
 import android.app.ProgressDialog;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+//import android.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.backendless.Backendless;
@@ -31,25 +43,23 @@ import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.DataQueryBuilder;
 import com.example.labadmin.ayiti_touris.ActivitiesOnline.Activity_DetailsEndroit;
-import com.example.labadmin.ayiti_touris.ActivitiesOnline.Activity_ListeFavorite;
-import com.example.labadmin.ayiti_touris.ActivitiesOnline.Activity_ListeHotel;
-import com.example.labadmin.ayiti_touris.ActivitiesOnline.LoginActivity;
 import com.example.labadmin.ayiti_touris.AdaptersOnline.AdapterEndroit;
 import com.example.labadmin.ayiti_touris.ModelsOnline.BackendSettings;
 import com.example.labadmin.ayiti_touris.ModelsOnline.Endroit;
 import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.utils.Constante;
 import com.example.labadmin.ayiti_touris.utils.NetWork;
-import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static android.support.v4.content.ContextCompat.getSystemService;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HotelsFragment extends Fragment {
+public class HotelsFragment extends Fragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener{
 
     // public static final String AplicationID = "2C703DEF-BB5B-08D7-FFDA-6C2620273000";
     // public static final String SecretKey = "DCF8496C-EF06-1583-FF19-15FBA9ACB000";
@@ -57,15 +67,17 @@ public class HotelsFragment extends Fragment {
     ArrayList<Endroit> ListEndroit;
     ListView lvendroit;
     AdapterEndroit adapterendroit;
-    ProgressBar progressBar;
+    ProgressBar progressbar;
     String DEP_ID;
     Intent intent;
     private Bundle bundle;
 
     private SwipeRefreshLayout swipeContainer;
-    private MaterialSearchView searchView;
-    public static HotelsFragment newInstance() {
+    // private SearchAnimationToolbar toolbar;
+    SearchView searchView;
+    private TextView searchText;
 
+    public static HotelsFragment newInstance() {
         return new HotelsFragment();
         // Required empty public constructor
     }
@@ -74,38 +86,29 @@ public class HotelsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_hotels, container, false);
-   // }
 
-    /*@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.fragment_hotels, container, false);*/
-        // Inflate the layout for this fragment
-
-        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-
-
-        //toolbar.setTitle("Hotels");
-        //toolbar.setTitleTextColor(android.graphics.Color.WHITE);
-
-//        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-       // ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-
+        // rekiperasyon non depatman yo
         DEP_ID  = this.getArguments().getString("dep");
-        //Toast.makeText(getActivity(), myValue, Toast.LENGTH_SHORT).show();
 
-       // apelle methode ki ranpli listview a nan fragment an
-    fetchListeHotel();
-       // Refresh();
+        // ajouter Swiper a la listview
+        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+        swipeContainer.setColorSchemeResources(R.color.orange,R.color.blue,R.color.green);
+
+        // apelle methode ki ranpli listview a nan fragment an
+        fetchListeHotel();
+
+        /**
+         * Methode ki rafrechi listview a
+         */
+        Refresh();
 
         Backendless.initApp(getActivity().getApplicationContext(), BackendSettings.APPLICATION_ID, BackendSettings.ANDROID_SECRET_KEY);
 
-        //lvendroit = (ListView) getActivity().findViewById(R.id.lvendroit);
-         lvendroit = view.findViewById(R.id.lvendroit);
+        lvendroit = view.findViewById(R.id.lvendroit);
+
         ListEndroit = new ArrayList<>();
         adapterendroit = new AdapterEndroit( this.getActivity(),ListEndroit);
+
         // Setup Adapter
         lvendroit.setAdapter(adapterendroit);
         lvendroit.setTextFilterEnabled(true);
@@ -125,8 +128,62 @@ public class HotelsFragment extends Fragment {
         });
 
 
+
         return view;
     }
+
+    public void Refresh()
+    {
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ListEndroit.clear();
+                        fetchListeHotel();
+                        swipeContainer.setRefreshing(false);
+                    }
+                }, 2500);
+            }
+        });
+    }
+
+    public void onRefresh() {
+        ListEndroit.clear();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ListEndroit.clear();
+                fetchListeHotel();
+                //swipeContainer.setRefreshing(false);
+            }
+        }, 1000);
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        inflater.inflate(R.menu.search_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(this);
+        searchView.setQueryHint("Rechercher");
+
+        super.onCreateOptionsMenu(menu, inflater);
+
+        super.onCreateOptionsMenu(menu, inflater);
+
+    }
+
+
+
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+    }
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -134,7 +191,19 @@ public class HotelsFragment extends Fragment {
 
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 
+    }
+
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+
+
+    }
     /**
      * emplemantasyon metod ==fetchListeHotel== qui ranpli listview 'lvendroit' nan fragment an
      */
@@ -148,12 +217,13 @@ public class HotelsFragment extends Fragment {
         else {
 
             if(DEP_ID.trim().equals(Constante.NORD_DEP)) {
-               // Toast.makeText(getActivity(),"impossible de continuer, verifier la connexion internet", Toast.LENGTH_LONG).show();
+                // Toast.makeText(getActivity(),"impossible de continuer, verifier la connexion internet", Toast.LENGTH_LONG).show();
 
                 IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
                 DataQueryBuilder queryBuilder = DataQueryBuilder.create();
 
                 queryBuilder.setWhereClause("id_categorie='" + BackendSettings.HOTEL_ID + "' and lieux_x_dep='" + BackendSettings.NORD_ID + "'");
+                queryBuilder.addSortBy("nom");
                 showProgress();
                 endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>() {
                     @Override
@@ -408,16 +478,11 @@ public class HotelsFragment extends Fragment {
 
             Toast.makeText(getActivity(),"impossible de continuer, verifier la connexion internet", Toast.LENGTH_LONG).show();
         } else {
-            //  String whereClause = "categorie=Viandes";
+
             IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
-
             DataQueryBuilder queryBuilder = DataQueryBuilder.create();
-            // queryBuilder.setWhereClause( whereClause.toString());
-
-            queryBuilder.setWhereClause("nom like'" + query + "%'");
+            queryBuilder.setWhereClause("nom like'%" + query + "%' and id_categorie='" + BackendSettings.HOTEL_ID + "'");
             queryBuilder.addSortBy("nom");
-
-            showProgress();
 
             endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
 
@@ -427,11 +492,7 @@ public class HotelsFragment extends Fragment {
 
                     adapterendroit.addAll(Endroit.fromListMap(response));
                     adapterendroit.notifyDataSetChanged();
-                    if (loadweb != null) {
-                        loadweb.dismiss();
-                    }
                     Log.d("DEBUG", lvendroit.toString());
-                    Toast.makeText(getContext().getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -439,6 +500,7 @@ public class HotelsFragment extends Fragment {
                 public void handleFault(BackendlessFault fault) {
 
                     Toast.makeText(getContext().getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d("DEBUG",fault.getMessage());
 
                 }
             });
@@ -448,92 +510,11 @@ public class HotelsFragment extends Fragment {
 
 
 
-    public void Refresh()
-    {
-
-        swipeContainer = (SwipeRefreshLayout) getActivity().findViewById(R.id.swipeContainer);
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-
-            @Override
-            public void onRefresh() {
-
-                fetchListeHotel();
-                //fetchHardcodedData();
-
-                //signal refresh has finished:
-                swipeContainer.setRefreshing(false);
-            }
-
-
-        });
-
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-    }
-
-
     public boolean onCreateOptionsMenu(Menu menu) {
-        getActivity().getMenuInflater().inflate(R.menu.search_menu, menu);
-        getActivity().getMenuInflater().inflate(R.menu.main, menu);
-        MenuItem item = menu.findItem(R.id.action_search);
-        //MenuItem item = menu.findItem(R.id.action_search);
-        searchView.setMenuItem(item);
 
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        getActivity().finish();
-        switch (id) {
-            case R.id.action_settings:
-                // showSnackBar("Votre preference");
-                return true;
-            case R.id.action_account:
-                Intent intent=new Intent(getActivity(),LoginActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.action_about:
-                //   showSnackBar("A Propos de Nous");
-                return true;
-
-            case R.id.action_favorite:
-                Intent intentfavorite=new Intent(getActivity(),Activity_ListeFavorite.class);
-                startActivity(intentfavorite);
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-
-        public void onBackPressed() {
-        if (searchView.isSearchOpen()) {
-            searchView.closeSearch();
-        } else {
-            super.getActivity().onBackPressed();
-        }
-    }
-
-   /* @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == MaterialSearchView.REQUEST_VOICE && resultCode == RESULT_OK) {
-            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            if (matches != null && matches.size() > 0) {
-                String searchWrd = matches.get(0);
-                if (!TextUtils.isEmpty(searchWrd)) {
-                    searchView.setQuery(searchWrd, false);
-                }
-            }
-
-            return;
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }*/
 
     private void showProgress() {
 
@@ -544,4 +525,46 @@ public class HotelsFragment extends Fragment {
         loadweb.show();
 
     }
+
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        Toast.makeText(getActivity().getApplicationContext(), "onQueryTextSubmit" + query, Toast.LENGTH_SHORT).show();
+
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        if(newText.isEmpty())
+        {
+            ListEndroit.clear();
+            onRefresh();
+
+        }
+        else if (!newText.isEmpty()){
+            ListEndroit.clear();
+            fetchSearchHotel(newText);
+        }
+
+        else {ListEndroit.clear();fetchListeHotel();}
+
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemActionExpand(MenuItem item) {
+        Toast.makeText(getActivity().getApplicationContext(), "onMenuItemActionExpand" + item, Toast.LENGTH_SHORT).show();
+
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemActionCollapse(MenuItem item) {
+
+        Toast.makeText(getActivity().getApplicationContext(), "onMenuItemActionCollapse" + item, Toast.LENGTH_SHORT).show();
+
+        return true;
+    }
+
 }

@@ -6,13 +6,21 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -22,6 +30,7 @@ import com.backendless.IDataStore;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.DataQueryBuilder;
+import com.example.labadmin.ayiti_touris.ActivitiesOnline.Activity_DetailsEndroit;
 import com.example.labadmin.ayiti_touris.AdaptersOnline.AdapterEndroit;
 import com.example.labadmin.ayiti_touris.ModelsOnline.BackendSettings;
 import com.example.labadmin.ayiti_touris.ModelsOnline.Endroit;
@@ -29,6 +38,8 @@ import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.utils.Constante;
 import com.example.labadmin.ayiti_touris.utils.NetWork;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
+import com.example.labadmin.ayiti_touris.Fragments.HotelsFragment;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +48,7 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ClubsFragment extends Fragment {
-    // public static final String AplicationID = "2C703DEF-BB5B-08D7-FFDA-6C2620273000";
-    // public static final String SecretKey = "DCF8496C-EF06-1583-FF19-15FBA9ACB000";
+public class ClubsFragment extends Fragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener {
     public android.app.ProgressDialog barProgressDialog, proDialog,ProgressDialog,loadweb;
     ArrayList<Endroit> ListEndroit;
     ListView lvendroit;
@@ -48,31 +57,102 @@ public class ClubsFragment extends Fragment {
     String DEP_ID;
 
     private SwipeRefreshLayout swipeContainer;
-    private MaterialSearchView searchView;
+    SearchView searchView;
+
     public static ClubsFragment newInstance() {
         // Required empty public constructor
         return new ClubsFragment();
     }
 
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.fragment_clubs, container, false);
-        // Inflate the layout for this fragment
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_clubs, container, false);
+
+        //Variale des departements
         DEP_ID  = this.getArguments().getString("dep");
+
+        //Ajouter swiper dans mon listView
+        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+        swipeContainer.setColorSchemeResources(R.color.orange,R.color.blue,R.color.green);
+
+        //Methode pour remplir listview
         fetchListeClubs();
+
+        // Methode ki refrechi listview
+        Refresh();
         Backendless.initApp(getActivity().getApplicationContext(), BackendSettings.APPLICATION_ID, BackendSettings.ANDROID_SECRET_KEY);
 
-        //lvendroit = (ListView) getActivity().findViewById(R.id.lvendroit);
         lvendroit = view.findViewById(R.id.lvendroit);
         ListEndroit = new ArrayList<>();
         adapterendroit = new AdapterEndroit( this.getActivity(),ListEndroit);
+
         // Setup Adapter
         lvendroit.setAdapter(adapterendroit);
         lvendroit.setTextFilterEnabled(true);
 
+        /**
+         * Methode clicklistener du listview 'lvendroit'
+         */
+        lvendroit.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Endroit endroit = ListEndroit.get(position);
+                Intent intent = new Intent(getActivity(), Activity_DetailsEndroit.class);
+                intent.putExtra("Endroit", endroit);
+                startActivity(intent);
+            }
+        });
+
+
         return view;
+    }
+
+
+    public void Refresh()
+    {
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ListEndroit.clear();
+                        fetchListeClubs();
+                        swipeContainer.setRefreshing(false);
+                    }
+                }, 2500);
+            }
+        });
+    }
+
+
+    public void onRefresh() {
+        ListEndroit.clear();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ListEndroit.clear();
+                fetchListeClubs();
+                //swipeContainer.setRefreshing(false);
+            }
+        }, 1000);
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        inflater.inflate(R.menu.search_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(this);
+        searchView.setQueryHint("Rechercher");
+
+        super.onCreateOptionsMenu(menu, inflater);
+
+        super.onCreateOptionsMenu(menu, inflater);
+
     }
 
     @Override
@@ -81,6 +161,25 @@ public class ClubsFragment extends Fragment {
 
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
+    }
+
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+
+
+    }
 
     public void fetchListeClubs(){
         boolean connexion= NetWork.checkConnexion(getActivity());
@@ -92,7 +191,6 @@ public class ClubsFragment extends Fragment {
         else {
 
             if(DEP_ID.trim().equals(Constante.NORD_DEP)) {
-                // Toast.makeText(getActivity(),"impossible de continuer, verifier la connexion internet", Toast.LENGTH_LONG).show();
 
                 IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
                 DataQueryBuilder queryBuilder = DataQueryBuilder.create();
@@ -344,6 +442,50 @@ public class ClubsFragment extends Fragment {
 
     }
 
+
+    private void fetchSearchClubs(String query) {
+        boolean connexion= NetWork.checkConnexion(getActivity());
+        if(!connexion)
+        {
+
+            Toast.makeText(getActivity(),"impossible de continuer, verifier la connexion internet",
+                    Toast.LENGTH_LONG).show();
+
+        }
+        else
+
+        {
+            IDataStore<Map> endroitStorage = Backendless.Data.of("lieu_touristique");
+
+            DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+
+            queryBuilder.setWhereClause("nom like'%" + query + "%' and id_categorie='" + BackendSettings.CLUB_ID + "'");
+            queryBuilder.addSortBy("nom");
+
+            endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
+
+            {
+                @Override
+                public void handleResponse(List<Map> response) {
+
+                    adapterendroit.addAll(Endroit.fromListMap(response));
+                    adapterendroit.notifyDataSetChanged();
+                    Log.d("DEBUG", lvendroit.toString());
+
+                }
+
+                @Override
+                public void handleFault(BackendlessFault fault) {
+
+                    Toast.makeText(getContext().getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d("DEBUG",fault.getMessage());
+
+                }
+            });
+        }
+
+    }
+
     private void showProgress() {
 
         loadweb = new ProgressDialog(getActivity());
@@ -352,5 +494,41 @@ public class ClubsFragment extends Fragment {
         loadweb.getWindow().setGravity(Gravity.CENTER);
         loadweb.show();
 
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String query) {
+        if(query.isEmpty())
+        {
+            ListEndroit.clear();
+            onRefresh();
+
+
+        }
+        else if (!query.isEmpty()){
+            ListEndroit.clear();
+            fetchSearchClubs(query);
+        }
+
+        else {
+            ListEndroit.clear();
+            fetchListeClubs();
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onMenuItemActionExpand(MenuItem menuItem) {
+        return false;
+    }
+
+    @Override
+    public boolean onMenuItemActionCollapse(MenuItem menuItem) {
+        return false;
     }
 }

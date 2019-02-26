@@ -25,9 +25,9 @@
     <color name="bgBottomNavigation">#fe485a</color>
 
 
-   <!-- <color name="primary_color">#3F51B5</color>
-    <color name="dark_primary_color">#303F9F</color>
-    <color name="accent_color">#FF5722</color>-->
+    <!-- <color name="primary_color">#3F51B5</color>
+     <color name="dark_primary_color">#303F9F</color>
+     <color name="accent_color">#FF5722</color>-->
     <color name="card_background">#efefef</color>
     <color name="facebook_brand_color">#3B5998</color>
     <color name="google_plus_brand_color">#dc4e41</color>
@@ -38,11 +38,27 @@
     <color name="login_primary_dark">#00796B</color> <!-- 700 -->
     <color name="login_primary_darker">#00695C</color> <!-- 800 -->
     <color name="login_accent">#FFFFFF</color>
+    <color name="grey">#272626</color>
     <color name="iron">#CCCCCC</color>
     <color name="TextMenu">#615f5f</color>
 
     <!-- login couleur -->
     <color name="loginfond">#a0a9b1</color>
+
+    <!-- swiprefresh color -->
+    <color name="orange">#FF9900</color>
+    <color name="green">#009900</color>
+    <color name="blue">#000099</color>
+
+
+    <!-- color MyMap -->
+
+    <color name="colorPrimaryText">#000000</color>
+    <color name="colorSecondaryText">#737373</color>
+    <color name="colorIcons">#FFFFFF</color>
+    <color name="colorDivider">#737373</color>
+    <color name="colorMap">#FAE6D6</color>
+
 
 
 </resources>
