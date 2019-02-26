@@ -64,7 +64,7 @@ public class Activity_DetailsEndroit extends AppCompatActivity {
     RatingBar ratingBar;
     String image;
     int viewImage;
-    //String nom;
+    //String nom putExtra;
     Endroit endroit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,17 +95,8 @@ public class Activity_DetailsEndroit extends AppCompatActivity {
 
         endroit = (Endroit) getIntent().getSerializableExtra("Endroit");
 
-       // setTitle("Details hotel");
-// find bouton
-        // btnretour =(Button)findViewById(R.id.btnretour);
-        // btntrailer=(Button)findViewById(R.id.btntrailer);
-        //retrieve all fields and set their value
-
-        // gvImage = (GridView) findViewById(R.id.gvImage);
         list = new ArrayList<>();
-       // adapterimage = new imageAdapter(this, list);
 
-        //  gvImage.setAdapter(adapterimage);
         // Recupere boutton
         btnmap=(FloatingActionButton)findViewById(R.id.location);
         btnfavorite=(FloatingActionButton)findViewById(R.id.fabFavorite);

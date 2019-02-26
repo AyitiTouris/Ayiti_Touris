@@ -120,45 +120,5 @@ public class AdapterEndroit extends ArrayAdapter<Endroit> {
         return convertView;
     }
 
-  /*  public  void test()
-{
-
-    QueryOptions options = new QueryOptions();
-
-    options.setRelated( Arrays.asList( "usersThatLike" ) );
-
-    BackendlessDataQuery query = new BackendlessDataQuery();
-
-    query.setQueryOptions( options );
-
-    Backendless.Data.of(Endroit.class).find(query, new AsyncCallback<List<Endroit>>() {
-
-        @Override
-
-        public void handleResponse(List<Endroit> response) {
-            String userId = Backendless.UserService.CurrentUser().getObjectId();
-            for (Endroit feed: response.()) {
-                feed = .getItem(position);
-
-                List<BackendlessUser> likedUsers = feed.getu();
-
-                for (BackendlessUser user : likedUsers)
-                    if (user.getObjectId().equals(userId)) {
-                        holder.like.setBackgroundResource(R.drawable.ic_star_rate_on);
-                    } else if (!user.getObjectId().equals(userId)) {
-                        holder.like.setBackgroundResource(R.drawable.ic_star_rate_off);
-                    }
-            }
-
-        }
-
-        @Override
-
-        public void handleFault(BackendlessFault backendlessFault) {
-
-        }
-
-    });
-}*/
-
+  
 }

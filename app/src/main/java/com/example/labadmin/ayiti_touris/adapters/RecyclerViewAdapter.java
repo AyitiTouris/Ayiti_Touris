@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.activities.DataModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -41,8 +42,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(v);
 
             v.setOnClickListener(this);
-            textView = (TextView) v.findViewById(R.id.textView);
-            imageView = (ImageView) v.findViewById(R.id.imageView);
+            textView = (TextView) v.findViewById(R.id.textView_Nomdep);
+            imageView = (ImageView) v.findViewById(R.id.imageView_Dep);
             relativeLayout = (RelativeLayout) v.findViewById(R.id.relativeLayout);
 
         }
@@ -51,8 +52,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             this.item = item;
 
             textView.setText(item.text);
-            imageView.setImageResource(item.drawable);
+            //imageView.setImageResource(item.drawable);
             relativeLayout.setBackgroundColor(Color.parseColor(item.color));
+            Picasso.with(imageView.getContext()).load(item.drawable)
+            //.transform(new RoundedCornersTransformation(20, 20))
+            // .placeholder(R.drawable.placeholder2)
+                   // .resize(800,650) // Width and Height
+                    //.centerCrop() // Image scaling type
+                    //.onlyScaleDown()
+
+                    .into(imageView);
 
         }
 

@@ -17,15 +17,20 @@ import com.example.labadmin.ayiti_touris.Fragments.HotelsFragment;
 import com.example.labadmin.ayiti_touris.Fragments.MonumentsFragment;
 import com.example.labadmin.ayiti_touris.Fragments.PlagesFragment;
 import com.example.labadmin.ayiti_touris.Fragments.RestaurantsFragment;
+import com.example.labadmin.ayiti_touris.ModelsOnline.DepartementModel;
 import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.utils.ListesEvent;
+
+import java.util.ArrayList;
 
 public class ActivityFragmentListes extends AppCompatActivity{
 
     private BottomNavigationView mBottomNavigationView;
     String value, DEP_ID;
     Intent intent;
+    DepartementModel departement;
     FloatingActionButton bt_floting_event;
+    ArrayList<DepartementModel> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +40,10 @@ public class ActivityFragmentListes extends AppCompatActivity{
         value = extras.getString("departement");
 
         DEP_ID = intent.getStringExtra(value);
+
+        departement = (DepartementModel) getIntent().getSerializableExtra("Endroit");
+
+        list = new ArrayList<>();
 
         //Toast.makeText(this, value, Toast.LENGTH_SHORT).show();
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

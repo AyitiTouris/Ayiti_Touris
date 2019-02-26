@@ -12,9 +12,10 @@
         android:id="@+id/cardView"
         android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="350dp"
         android:elevation="6dp"
-        card_view:cardCornerRadius="6dp">
+        card_view:cardMaxElevation="5dp"
+        card_view:cardCornerRadius="5dp">
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -22,85 +23,107 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ImageView
+            <com.makeramen.roundedimageview.RoundedImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imageView_Dep"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="250dp"
                 android:scaleType="centerCrop"
-                android:id="@+id/imageView"
-
+                android:adjustViewBounds="true"
+                app:riv_corner_radius="5dip"
                 />
 
-            <View
+            <!--<ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:id="@+id/imageView"
+                />-->
+
+
+            <!--<View
                 android:layout_width="match_parent"
                 android:layout_height="95dp"
-                android:layout_marginTop="155dp"
-                android:background="#F0A830"
-                android:id="@+id/view" />
+                android:layout_below="@+id/imageView"
+                android:background="#632196F3"
+                android:id="@+id/view" />-->
 
             <View
                 android:layout_width="10dp"
                 android:layout_height="1dp"
                 android:alpha="0.4"
-                android:background="#000000"
+                android:background="#4D4949"
                 android:id="@+id/line"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="30dp"
-                android:layout_alignLeft="@+id/textView"
-                android:layout_alignStart="@+id/textView"
-                android:layout_below="@+id/textView"
+                android:layout_alignLeft="@+id/textView_Nomdep"
+                android:layout_alignStart="@+id/textView_Nomdep"
+                android:layout_below="@+id/textView_Nomdep"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
 
-            <com.pkmmte.view.CircularImageView
+            <!--<com.pkmmte.view.CircularImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:id="@+id/avatar"
-                android:src="@drawable/background"
+                android:src="@drawable/ic_detail"
                 app:border="true"
                 android:scaleType="centerCrop"
-                app:border_color="#F0A830"
+                app:border_color="#632196F3"
                 app:border_width="6dp"
                 android:layout_marginLeft="22dp"
                 android:layout_marginStart="22dp"
                 android:layout_marginBottom="42dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true" />-->
+
+            <!-- <ImageButton
+                 android:layout_width="60dp"
+                 android:layout_height="60dp"
+                 android:src="@drawable/ic_detail"
+                 android:layout_marginLeft="22dp"
+                 android:layout_marginStart="22dp"
+                 android:layout_marginBottom="42dp"
+                 android:layout_alignParentBottom="true"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentStart="true"
+                 android:background="@drawable/bouton_detail"
+                 android:elevation="6dp"
+
+                 />-->
 
             <TextView
+                android:id="@+id/textView_Nomdep"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-
-                android:textColor="#ffffff"
+                android:textColor="#464343"
                 android:textSize="18sp"
-                android:id="@+id/textView"
-                android:layout_below="@+id/imageView"
-                android:layout_toRightOf="@+id/avatar"
-                android:layout_toEndOf="@+id/avatar"
+                android:textStyle="bold"
+                android:layout_below="@+id/imageView_Dep"
                 android:layout_marginLeft="29dp"
                 android:layout_marginStart="29dp" />
 
-           <!-- <TextView
+            <TextView
+                android:id="@+id/textView_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="The photo of Yasir Ameen. He is an Android Application Developer and he work hard for giving thier best to the audience. Join him on facebook"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:lines="3"
                 android:ellipsize="end"
-                android:layout_marginTop="4dp"
-                android:paddingBottom="4dp"
-                android:paddingRight="15dp"
-                android:textColor="#ffffff"
-                android:id="@+id/textView2"
+                android:layout_marginTop="2dp"
+                android:paddingRight="10dp"
+                android:textColor="#37383A"
                 android:layout_alignLeft="@+id/line"
                 android:layout_alignStart="@+id/line"
                 android:layout_alignParentBottom="true"
-                android:layout_below="@+id/line" />-->
+                android:layout_below="@+id/line"
+                />
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
-
 
 </LinearLayout>

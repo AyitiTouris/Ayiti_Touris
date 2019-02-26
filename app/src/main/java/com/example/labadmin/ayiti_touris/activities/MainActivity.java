@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import android.support.v7.app.AppCompatActivity;
@@ -18,18 +21,30 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import com.backendless.Backendless;
+import com.backendless.IDataStore;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
+import com.backendless.persistence.DataQueryBuilder;
+import com.example.labadmin.ayiti_touris.AdaptersOnline.AdapterDepartement;
+import com.example.labadmin.ayiti_touris.ModelsOnline.BackendSettings;
+import com.example.labadmin.ayiti_touris.ModelsOnline.DepartementModel;
 import com.example.labadmin.ayiti_touris.R;
 import com.example.labadmin.ayiti_touris.adapters.RecyclerViewAdapter;
 import com.example.labadmin.ayiti_touris.utils.ListesEvent;
+import com.example.labadmin.ayiti_touris.utils.NetWork;
 
 /*import com.Backendless.Backendless;*/
 
-public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.ItemListener {
+public class MainActivity extends AppCompatActivity  {
 
     //Intent intent;
-    String itemDep;
-    RecyclerView recyclerView;
-    ArrayList<DataModel> arrayList;
+    ArrayList<DepartementModel> ListDepartement;
+    ListView lvDepartement;
+    AdapterDepartement adapterDep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,56 +52,72 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         setContentView(R.layout.activity_main);
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        arrayList = new ArrayList<>();
-        arrayList.add(new DataModel("OUEST", R.drawable.ouest, "#ffffffff","..."));
-        arrayList.add(new DataModel("NORD", R.drawable.nord, "#ffffffff","..."));
-        arrayList.add(new DataModel("SUD", R.drawable.sud, "#ffffffff","..."));
-        arrayList.add(new DataModel("NORD-EST", R.drawable.nord_est, "#4BAA50","..."));
-        arrayList.add(new DataModel("ARTIBONITE", R.drawable.artibonite, "#F94336","..."));
-        arrayList.add(new DataModel("NIPPES", R.drawable.nippes, "#0A9B88","..."));
-        arrayList.add(new DataModel("NORD-OUEST", R.drawable.nord_ouest, "#0A9B88","..."));
-        arrayList.add(new DataModel("SUD-EST", R.drawable.sud_est, "#0A9B88","..."));
-        arrayList.add(new DataModel("CENTRE", R.drawable.centre, "#0A9B88","..."));
-        arrayList.add(new DataModel("GRAND-ANSE", R.drawable.grand_anse, "#0A9B88","..."));
+        fetchListeHotel();
+        Backendless.initApp(getApplicationContext(), BackendSettings.APPLICATION_ID, BackendSettings.ANDROID_SECRET_KEY);
 
+        lvDepartement = (ListView) findViewById(R.id.lvdepartement);
+        ListDepartement = new ArrayList<>();
+        adapterDep = new AdapterDepartement(this, ListDepartement);
 
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, arrayList, this);
-        recyclerView.setAdapter(adapter);
+        // Setup Adapter
+        lvDepartement.setAdapter(adapterDep);
+        lvDepartement.setTextFilterEnabled(true);
 
+    lvDepartement.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        /**
-         AutoFitGridLayoutManager that auto fits the cells by the column width defined.
-         **/
-
-        AutoFitGridLayoutManager layoutManager = new AutoFitGridLayoutManager(this, 300);
-        recyclerView.setLayoutManager(layoutManager);
-
-
-        /**
-         Simple GridLayoutManager that spans two columns
-         **/
-        /*GridLayoutManager manager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(manager);*/
+        DepartementModel departement = ListDepartement.get(position);
+        Intent intent = new Intent(MainActivity.this, ActivityFragmentListes.class);
+        intent.putExtra("Departement", departement);
+        startActivity(intent);
+        //Toast.makeText(MainActivity.this, "dep"+dep, Toast.LENGTH_SHORT).show();
+    }
+});
     }
 
-  /*  private void SentDep(String itmd)
+    public void fetchListeHotel(){
+        boolean connexion= NetWork.checkConnexion(this);
+        if(!connexion)
+        {
 
-    {
-        Bundle bundle = new Bundle();
-        bundle.putString("departement", itmd);
-        intent.putExtras(bundle);
-    }*/
+            Toast.makeText(this,"impossible de continuer, verifier la connexion internet", Toast.LENGTH_LONG).show();
+        } else {
 
-    @Override
-    public void onItemClick(DataModel item) {
-         String itemDepat=item.text;
-        Intent intent = new Intent(MainActivity.this, ActivityFragmentListes.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("departement", itemDepat);
-        intent.putExtras(bundle);
-        startActivity(intent);
+            IDataStore<Map> endroitStorage = Backendless.Data.of("departement");
+            DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+            queryBuilder.addSortBy("classement");
 
+            //queryBuilder.setWhereClause("id_categorie='" + BackendSettings.HOTEL_ID +"'");
+            //showProgress();
+            //progressBar.setVisibility(View.VISIBLE);
+
+            endroitStorage.find(queryBuilder, new AsyncCallback<List<Map>>()
+
+            {
+
+                @Override
+                public void handleResponse(List<Map> response) {
+                    //loadweb.dismiss();
+                    //progressBar.setVisibility(View.GONE);
+                    adapterDep.addAll(DepartementModel.fromListMap(response));
+                    adapterDep.notifyDataSetChanged();
+                    // Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                    // if (loadweb != null) {
+                    //
+                    //  }
+
+                    Log.d("DEBUG", lvDepartement.toString());
+                }
+
+                @Override
+                public void handleFault(BackendlessFault fault) {
+
+                    Toast.makeText(getApplicationContext(), fault.getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }
     }
 
 }
