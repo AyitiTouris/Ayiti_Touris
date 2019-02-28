@@ -56,10 +56,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double longitudeBest, latitudeBest;
     double longitudeGPS, latitudeGPS;
 
+
     ProgressDialog progress;
     private List<LatLng> latLngList;
 
-    String Longitude,Latitude;
+    String Longitude,Latitude,nom_endroit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         Longitude = extras.getString("Longitude");
-       Latitude = extras.getString("Latitude");
+        Latitude = extras.getString("Latitude");
+        nom_endroit=extras.getString("nom_endroit");
 
 
 
@@ -79,7 +81,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         progress.setMessage("Loading...");
 
 
-       // Toast.makeText(MapsActivity.this, ""+longitudeGPS +"  "+ latitudeGPS, Toast.LENGTH_SHORT).show();
+        // Toast.makeText(MapsActivity.this, ""+longitudeGPS +"  "+ latitudeGPS, Toast.LENGTH_SHORT).show();
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -131,7 +133,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             if(mMap !=null)
             {
-              updatemap(location.getLatitude(), location.getLongitude());
+                updatemap(location.getLatitude(), location.getLongitude());
             }
 
 
@@ -188,7 +190,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         latitudeBest = location.getLongitude();
         if(mMap !=null)
         {
-          updatemap(location.getLatitude(), location.getLongitude());
+            updatemap(location.getLatitude(), location.getLongitude());
         }
 
     }
@@ -215,7 +217,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         LatLng sydney = new LatLng(latitudeGPS,longitudeGPS);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Votre Position"));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Votre Position")).showInfoWindow();
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitudeGPS, longitudeGPS), 12.0f));
 
     }
@@ -235,12 +237,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         LatLng sydney = new LatLng(lat,lng);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("your Position"));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Votre Position")).showInfoWindow();
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 12.0f));
 
         String directionApiPath = Helper.getUrl(String.valueOf(lat), String.valueOf(lng),
                 String.valueOf(Latitude), String.valueOf(Longitude));
-              //  String.valueOf(18.514564), String.valueOf(-72.290057));
+        //  String.valueOf(18.514564), String.valueOf(-72.290057));
 
         getDirectionFromDirectionApiServer(directionApiPath);
     }
@@ -257,7 +259,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void getDirectionFromDirectionApiServer(String url){
         Log.i(LOG_TXT,"Call Progress");
 
-        progress.show();
+        ///////progress.show();
 
         GsonRequest<DirectionObject> serverRequest = new GsonRequest<DirectionObject>(
                 Request.Method.GET,
@@ -265,7 +267,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 DirectionObject.class,
                 createRequestSuccessListener(),
                 createRequestErrorListener());
-                serverRequest.setRetryPolicy(new DefaultRetryPolicy(
+        serverRequest.setRetryPolicy(new DefaultRetryPolicy(
                 Helper.MY_SOCKET_TIMEOUT_MS,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -338,8 +340,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //LatLng destination = new LatLng(18.514564,-72.290057);
         LatLng destination = new LatLng(Double.parseDouble(Latitude),Double.parseDouble(Longitude));
-        mMap.addMarker(new MarkerOptions().position(destination).title("Destination"));
-       // mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(Latitude),Double.parseDouble(Longitude)), 12.0f));
+        mMap.addMarker(new MarkerOptions().position(destination).title(nom_endroit)).showInfoWindow();
+        // mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(Latitude),Double.parseDouble(Longitude)), 12.0f));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(18.514564,-72.290057), 12.0f));
 
         progress.dismiss();

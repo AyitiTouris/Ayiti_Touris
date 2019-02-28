@@ -81,8 +81,6 @@ public class Activity_ListeHotel extends AppCompatActivity {
           //  progressBar = (ProgressBar) findViewById(R.id.HeaderProgress);
             //progressBar.setVisibility(View.GONE);
 
-
-
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setVoiceSearch(false);
         searchView.setCursorDrawable(R.drawable.custom_cursor);
